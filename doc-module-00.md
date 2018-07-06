@@ -5,10 +5,10 @@
 
 
 
-### 1. Using Cloud9 
+## 1. Using Cloud9 
 
 
-#### 1.1. Create your Cloud9 environments
+### 1.1. Create your Cloud9 environments
 Before starting, you need to configure **your EC2 role** for Cloud9 environment instance.
 
 ##### 1. launch your instance 
@@ -28,12 +28,70 @@ Before starting, you need to configure **your EC2 role** for Cloud9 environment 
 ![ec2 instance](./imgs/01/03.png)
 	
 
-#### 1.2 Update your environment
+### 1.2 Update your environment
 
 - Follow the "Java Sample for AWS Cloud 9"
 
-https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-java.html
+ref : https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-java.html
 
 
+### 1.3 Update your environment (optional reference)
 
-### 2. Install docker
+	1. Check java --version and check the location of Java 
+```
+$ java -version
+java version "1.7.0_171"
+
+$ which java
+/usr/bin/java
+
+```
+	
+	2. Upgrade java version to 1.8 (for development, we need to upgrade Java version and install required packages)
+	
+```
+sudo yum list available java\*      # check available java version
+sudo yum -y install java-1.8.0 java-1.8.0-openjdk-devel        # install 1.8 java and javac
+sudo yum remove java-1.7.0-openjdk -y # remove 1.7
+java -version											# check java version
+```
+
+	4. Update JAVA_HOME environment variable in .bashrc
+
+```
+vi ~/.bashrc
+### add follwing content
+export JAVA_HOME=/usr/
+```
+	
+	5. Install Maven
+
+```
+$ cd /usr/local
+$ sudo wget http://www-eu.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz
+$ sudo tar xzf apache-maven-3.5.3-bin.tar.gz
+$ sudo ln -s apache-maven-3.5.3  maven
+
+$ sudo vi /etc/profile.d/maven.sh
+
+# add following content.
+export M2_HOME=/usr/local/maven
+export PATH=${M2_HOME}/bin:${PATH}
+
+# load the environment variables in current shell using following command.
+source /etc/profile.d/maven.sh
+
+# check the loaded environment variables  
+echo $PATH             
+```
+
+	6. Install AWS CLI
+	
+
+### 1.4 Install docker
+
+```
+sudo yum install docker
+
+docker --help
+```
