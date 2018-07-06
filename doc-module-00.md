@@ -14,18 +14,18 @@ Before starting, you need to configure **your EC2 role** for Cloud9 environment 
 ##### 1. launch your instance 
 	1. Specify Environment name : "YOUR INITIAL-container-workshop"
 
-![ec2 instance](./imgs/01/01.png)
+![ec2 instance](./imgs/00/01.png)
 
 	2. Select "Create a new instance"
 	3. Select "t2.small"
 
-![ec2 instance](./imgs/01/02.png)
+![ec2 instance](./imgs/00/02.png)
 	
 	4. Review and launching your environment	
 	
 ##### 2. Open your environment
 
-![ec2 instance](./imgs/01/03.png)
+![ec2 instance](./imgs/00/03.png)
 	
 
 ### 1.2 Update your environment
