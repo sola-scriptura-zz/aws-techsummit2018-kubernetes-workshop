@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - mvn package
+      - rm buildspec.yml
+      - mv buildspec_docker.yml buildspec.yml
+artifacts:
+  type: zip
+  files:
+    - 'target/module-09.jar'
+    - 'Dockerfile'
+    - 'buildspec.yml'
+    - 'imagedefinition.json'   
+  discard-paths: yes

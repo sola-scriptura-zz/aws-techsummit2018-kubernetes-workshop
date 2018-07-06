@@ -1,0 +1,6 @@
+[
+    {
+        "name": "java-container",
+        "imageUri": "550622896891.dkr.ecr.ap-southeast-1.amazonaws.com/java-workshop"
+    }
+]
