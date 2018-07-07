@@ -1,4 +1,4 @@
-## Preparing a Lab environment 
+## Preparing a your Lab environment 
 - This module is for configuring your dev environment
 - We will show the set up process of Cloud9 Env and Java Develpoment environment.
 - Cloud 9 is recommended as your dev IDE for studying this workshop
@@ -11,19 +11,20 @@
 ### 1.1. Create your Cloud9 environments
 Before starting, you need to configure **your EC2 role** for Cloud9 environment instance.
 
-##### 1. launch your instance 
-	1. Specify Environment name : "YOUR INITIAL-container-workshop"
+##### Launch your instance 
+
+1. Specify Environment name : "YOUR INITIAL-container-workshop"
 
 ![ec2 instance](./imgs/00/01.png)
 
-	2. Select "Create a new instance"
-	3. Select "t2.small"
+2. Select "Create a new instance"
+3. Select "t2.small"
 
 ![ec2 instance](./imgs/00/02.png)
 	
 	4. Review and launching your environment	
 	
-##### 2. Open your environment
+##### Open your environment
 
 ![ec2 instance](./imgs/00/03.png)
 	
@@ -37,7 +38,8 @@ ref : https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-java.html
 
 ### 1.3 Update your environment (optional reference)
 
-	1. Check java --version and check the location of Java 
+1. Check java --version and check the location of Java 
+
 ```
 $ java -version
 java version "1.7.0_171"
@@ -47,7 +49,7 @@ $ which java
 
 ```
 	
-	2. Upgrade java version to 1.8 (for development, we need to upgrade Java version and install required packages)
+2. Upgrade java version to 1.8 (for development, we need to upgrade Java version and install required packages)
 	
 ```
 sudo yum list available java\*      # check available java version
@@ -56,7 +58,7 @@ sudo yum remove java-1.7.0-openjdk -y # remove 1.7
 java -version											# check java version
 ```
 
-	4. Update JAVA_HOME environment variable in .bashrc
+3. Update JAVA_HOME environment variable in .bashrc
 
 ```
 vi ~/.bashrc
@@ -64,15 +66,15 @@ vi ~/.bashrc
 export JAVA_HOME=/usr/
 ```
 	
-	5. Install Maven
+4. Install Maven
 
 ```
-$ cd /usr/local
-$ sudo wget http://www-eu.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz
-$ sudo tar xzf apache-maven-3.5.3-bin.tar.gz
-$ sudo ln -s apache-maven-3.5.3  maven
+cd /usr/local
+sudo wget http://www-eu.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz
+sudo tar xzf apache-maven-3.5.3-bin.tar.gz
+sudo ln -s apache-maven-3.5.3  maven
 
-$ sudo vi /etc/profile.d/maven.sh
+sudo vi /etc/profile.d/maven.sh
 
 # add following content.
 export M2_HOME=/usr/local/maven
@@ -85,13 +87,16 @@ source /etc/profile.d/maven.sh
 echo $PATH             
 ```
 
-	6. Install AWS CLI
-	
+5. Install AWS CLI
+6. Install ECS-CLI
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html
+
+7. Install Perl
+https://www.perl.org/get.html
 
 ### 1.4 Install docker
 
 ```
 sudo yum install docker
-
 docker --help
 ```

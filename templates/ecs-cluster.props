@@ -1,0 +1,16 @@
+ALBPublicCNAME=aws-i-ALBPu-7JST6QHX51Q7-95374456.ap-southeast-1.elb.amazonaws.com
+SecurityGroupWebapp=sg-3ccf0f44
+VPC=vpc-96feabf1
+ECSCluster=aws-infra-ecscli-ECSCluster-1HMU86ZC30CTR
+ALBPrivateCNAME=internal-aws-i-ALBPr-1XEHWIS4138Y7-758662524.ap-southeast-1.elb.amazonaws.com
+ECSRole=aws-infra-ecscli-ECSRole-2EKRAUETG0GG
+PrivateSubnet1=subnet-c25f5ba5
+ALBPrivate=arn:aws:elasticloadbalancing:ap-southeast-1:550622896891:loadbalancer/app/aws-i-ALBPr-1XEHWIS4138Y7/83e5113edb87480f
+WebappTargetGroupArn=arn:aws:elasticloadbalancing:ap-southeast-1:550622896891:targetgroup/webapp-svc/9aed67cb5da5aedf
+NameTargetGroupArn=arn:aws:elasticloadbalancing:ap-southeast-1:550622896891:targetgroup/name-svc/076e6219be46cd35
+PrivateSubnet2=subnet-39e7d270
+LogGroup=/ecs/ecs-demo
+ALBPublic=arn:aws:elasticloadbalancing:ap-southeast-1:550622896891:loadbalancer/app/aws-i-ALBPu-7JST6QHX51Q7/857fd263de5f2691
+PublicSubnet2=subnet-8ae1d4c3
+GreetingTargetGroupArn=arn:aws:elasticloadbalancing:ap-southeast-1:550622896891:targetgroup/greeting-svc/2a98f235005eaefa
+PublicSubnet1=subnet-a66561c1
