@@ -2,9 +2,9 @@
 ## Lab 3 : CI/CD for ECS
 
 
-#### 1.3 Configure CodeCommit and Git credentials
+### 1. Configure CodeCommit and Git credentials
 
-##### 1. Create a CodeCommit repository
+#### 1.1. Create a CodeCommit repository
  
  Refer : 
   https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up.html#setting-up-standard
@@ -25,8 +25,7 @@ git config --global credential.UseHttpPath true
       
 ```
 
-
-### 2 Create a builder project for a docker image
+### 2. Create a builder project for a docker image
 
 refer : https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
 	
@@ -167,7 +166,7 @@ docker ps
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html
 
 
-#### 3.4 Add imagedefinition.json in your root directory of source codes
+#### 3.1 Add imagedefinition.json in your root directory of source codes
 
 - name is the container name you defined in task definition 
 
@@ -202,4 +201,12 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html
 1. Change code and deploy it
 	
 ![ECS](imgs/03/10.png) 	
+
+
+<hr>
+<hr>
+
+### Lab 3-2 : Update your stack with CloudFormation (Continue from Lab 2, section 2)
+
+### 1.
 

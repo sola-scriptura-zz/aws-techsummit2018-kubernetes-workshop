@@ -5,7 +5,7 @@
 
 #### 1.2 Using a following instruction
 
-#### 3.1 Create ECS cluster
+#### 1.3 Create ECS cluster
 
 1. Create a cluster
 ![key chain](imgs/02/01.png) 	
@@ -39,7 +39,7 @@
 if you have error on creating IAM Role for instance, then create a role for ECS Instance Role and execute it again.
 
 
-#### 3.2 Create a ALB
+#### 1.4 Create a ALB
 
 1. Create a ALB
 
@@ -68,7 +68,7 @@ Don't register target instances here.
 ![ECS](imgs/02/14.png) 
 
 
-#### 3.3 Create Task definition
+#### 1.5 Create Task definition
 
 1. Specify information
 
@@ -102,8 +102,7 @@ Check a created task
  
 
 
-
-#### 3.4 Create Service definition
+#### 1.6 Create Service definition
 
 1. Configure service
 	
@@ -123,7 +122,7 @@ Check a created task
 - Select a ALB you crated
 - Specify Listner port : 80 HTTP
 - Select "Create New" as target group name  
-- Specify Path pattern : /hello
+- Specify Path pattern : /
 
 
 ![ECS](imgs/02/05.png) 
@@ -135,18 +134,30 @@ Check a created task
 ![ECS](imgs/02/06.png) 
  
 
+#### 1.7 Add one more service
+- Specify Path Pattern : /workshop/users*
+- Add ALB target group 
+- Add health Check : /workshop/users/all
+
+
+#### Confgratulation! You added 2 services in your ECS cluster.
+ 
+
 ### 2. Create a ECS cluster using CloudFormation
 
 Use : 
 https://github.com/aws-samples/ecs-refarch-cloudformation
 
+Lauch a whole stack. and test it(see output of CloudFormation)
 
+
+<hr>
+<hr>
 
 ### 3. Create a ECS cluster using ECS-CLI (Optional)
 
 1. Install ecs-cli :
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html
-
 
 Create an ECS cluster with these resources:
 
