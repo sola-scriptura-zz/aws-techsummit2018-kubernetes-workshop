@@ -1,4 +1,4 @@
-## Lab 2 : Amazon ECS, first Deployment using CLI and CloudFormation
+## Lab 2 : Amazon ECS, First Deployment using Console and CloudFormation
 
 ### 1. Create a ECS in your console
 
