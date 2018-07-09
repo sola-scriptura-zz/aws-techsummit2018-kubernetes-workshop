@@ -37,5 +37,19 @@
 ## [Lab 6 : More topics](./doc-module-06.md)
 
 <hr>
+<hr>
+
+# More Studies
+
+Microservice with Fargate : 
+https://github.com/aws-samples/aws-microservices-deploy-options
+
+Kube :
+https://github.com/aws-samples/aws-workshop-for-kubernetes
+
+DevOps : https://github.com/stelligent/mu
+
+Kops : 
+
 
 

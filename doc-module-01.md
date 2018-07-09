@@ -5,7 +5,6 @@ In this module, we introduce the fundamental concept of CodeStar and how to buil
 - Push docker image to ECR
 - Getting a docker from ECR and check it's availability on local machine
 
-#
 
 ### 1. Create a docker for this application.
 
@@ -15,6 +14,8 @@ git clone https://github.com/aws-asean-builders/aws-container-workshop.git
 
 #### 1.1 Compile your local files
 
+1. Run maven command
+
 ```
 cd lab-01
 
@@ -22,9 +23,36 @@ mvn compile package -Dmaven.test.skip=true
 
 ls -al target
 
-java -jar target/modoule..................
+java -jar target/lab-01-0.1.0.jar
 
 ```
+
+2. Check the result
+
+Open Browser :
+localhost:8080
+
+```
+# test user
+curl 'localhost:8080/workshop/users/all'
+
+curl 'localhost:8080/workshop/users/add?name=First&email=ex1@gmail.com'
+
+curl 'localhost:8080/workshop/users/deleteall'
+
+curl 'localhost:8080/workshop/users/all'
+
+# test image
+curl 'localhost:8080/workshop/images/all'
+
+curl 'localhost:8080/workshop/images/add?userid=1&bucket=seon-singapore&prefix=/output&filename=test.PNG'
+
+curl 'localhost:8080/workshop/images/deleteall'
+
+curl 'localhost:8080/workshop/images/all'
+
+```
+
 
 #### 1.2 Create your first local docker 
 
@@ -37,7 +65,7 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html#d
 sudo yum install -y docker
 ```
 
-##### Run your first docker application
+#### 1.3 Run your first docker application
 
 1. Check a Dockerfile
 
@@ -68,7 +96,7 @@ docker run -p 8080:8080 -it hello-world bash
 docker run -p 80:8080 -it hello-world bash
 ```
 
-##### More commands for docker
+#### 1.4 More commands for docker
 
 1. run docker as a daemon
 
@@ -97,8 +125,7 @@ docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
 ```
 
-##### Debug
-
+#### 1.5 Debug Command
 
 1. List stack:
 
@@ -193,9 +220,7 @@ docker ps
 ```
 
 <hr>
-
 <hr>
-
 <hr>
 
 ## Lab 1-2 : Advanced applicaiton building
@@ -211,10 +236,9 @@ mvn compile package -Dmaven.test.skip=true
 
 ```
 
-### 1. Externalize Configuration 
+### 2. Externalize Configuration 
 
-
-#### 1.1. Configure AWS CLI to allow application to get access key and secret key 
+#### 2.1. Configure AWS CLI to allow application to get access key and secret key 
 **If you configured AWS CLI configuraiton before, then skip this 1.1 
 
 ```
@@ -224,7 +248,7 @@ mvn compile package -Dmaven.test.skip=true
 > AWS region : [your region]
 ```
 
-#### 1.2. Configure ParameterStore in System Manager 
+#### 2.2. Configure ParameterStore in System Manager 
 - AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. You can store data such as passwords, database strings, and license codes as parameter values.
 Complete the following tasks to configure application parameters for ParameterStore (select your region, for example, us-east-1, ap-southeast-1 and so forth)
 
@@ -237,12 +261,12 @@ Complete the following tasks to configure application parameters for ParameterSt
 
 ![Parameter Store](./imgs/01/01.png)
 
-#### 1.3. Rerun and check it
+#### 2.3. Rerun and check it
 
 - Check your EC2 role, if you have errors after creating parameters in Parameter Store.
 
 
-### 2. Expose Application Metrics and Information
+### 3. Expose Application Metrics and Information
 We are using "spring-boot-starter-actuator", please check application metrics and information using following command
 
 ```
@@ -250,9 +274,9 @@ curl localhost:8080/heath
 curl localhost:8080/beans
 ```
 
-### 3. Launch Aurora for MySQL
+### 4. Launch Aurora for MySQL
 
-#### 3.1. Create Aurora MySQL
+#### 4.1. Create Aurora MySQL
 
 	1. Open the Amazon RDS console : https://console.aws.amazon.com/rds/home?region=us-east-1#
 	2. Select Aurora for MySQL 5.7 Database engine and select the 
@@ -309,7 +333,7 @@ show tables;
 ![Checking Aurora](./imgs/01/04.png)	
 
 
-#### 3.2. Configure ParameterStore in System Manager 
+#### 4.2. Configure ParameterStore in System Manager 
 
 AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. You can store data such as passwords, database strings, and license codes as parameter values.
 Complete the following tasks to configure application parameters for ParameterStore (default region is us-east-1)
@@ -329,7 +353,7 @@ Complete the following tasks to configure application parameters for ParameterSt
 ![Parameter Store](./imgs/01/06.png)
 
 
-#### 3.3 Run your application (Not changed Yet)
+#### 4.3 Run your application (Not changed Yet)
 After running, check tables of workshop database 
 
 ```
