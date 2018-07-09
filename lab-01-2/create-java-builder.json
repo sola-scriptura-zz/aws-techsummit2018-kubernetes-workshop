@@ -1,0 +1,20 @@
+{
+  "name": "build-java-project",
+  "source": {
+    "type": "CODECOMMIT",
+    "location": "https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/java-docker"
+  },
+  "artifacts": {
+    "type": "S3",
+	"location": "<YOUR_BUCKET>",
+    "path": "",
+    "name": "output.zip",
+    "packaging": "ZIP"     
+  },
+  "environment": {
+    "type": "LINUX_CONTAINER",
+    "image": "aws/codebuild/java:openjdk-8",
+    "computeType": "BUILD_GENERAL1_SMALL"
+  },
+  "serviceRole": "arn:aws:iam::<account id>:role/service-role/<your code build role name>"
+}

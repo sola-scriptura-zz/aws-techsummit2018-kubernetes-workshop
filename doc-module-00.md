@@ -91,8 +91,6 @@ echo $PATH
 6. Install ECS-CLI
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html
 
-7. Install Perl
-https://www.perl.org/get.html
 
 ### 1.4 Install docker
 
