@@ -150,6 +150,30 @@ https://github.com/aws-samples/ecs-refarch-cloudformation
 
 Lauch a whole stack. and test it(see output of CloudFormation)
 
+### 1. Customize the templates
+
+1. Clone the forked GitHub repository to your local machine.
+
+
+```
+git clone https://github.com/aws-samples/ecs-refarch-cloudformation.git
+
+```
+
+2. Modify the templates.
+3. Upload them to an Amazon S3 bucket of your choice. Upload master.yml, template, service foders
+
+- master.yml
+  +- infrastructure\*
+  +- services\*
+
+4. Either create a new CloudFormation stack by deploying the master.yaml template, or update your existing stack with your version of the templates.
+
+
+5. Change master.yml to point out your file location.
+
+### 2. Lauch the stack with CloudFormaton
+
 
 <hr>
 <hr>

@@ -1,6 +1,6 @@
 
 ## Lab 3 : CI/CD for ECS
-
+- Use a Lab-01 source and images to complete this lab.
 
 ### 1. Configure CodeCommit and Git credentials
 
@@ -25,6 +25,12 @@ git config --global credential.UseHttpPath true
       
 ```
 
+#### 1.2 Create CodeBuild Service Role for docker images
+
+1. Give a full CloudWatch Write privilege
+2. Give a full ECR privilege
+
+
 ### 2. Create a builder project for a docker image
 
 refer : https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.html
@@ -32,6 +38,7 @@ refer : https://docs.aws.amazon.com/codebuild/latest/userguide/sample-docker.htm
 - There is 2 builder json file. create-dock-builder.json and create-java-builder.json	
 - create-java-builder.json is a file for creating CodeBuild for compiling and packaging Java source code to JAR output file.
 - create-dock-builder.json is a file for creating CodeBuild for creating docker images 
+
 	
 #### 2.1. Change Builder files
 
@@ -119,22 +126,20 @@ git push
 
 1. In your Codebuild Console, click a Start Build Button
 
-![project template](./images/module-08/14.png)
+![project template](./imgs/03/01.png)
 
 	2. Select master branch
 
-![project template](./images/module-08/15.png)
+![project template](./imgs/03/02.png)
 		
 
 #### 2.5. Check Your Roles for CoudeBuild
 
-Check your build result and if your role dosn't have enough privilege then add more access privilege on access policy.
+If there is a failure, check your build result and if your role dosn't have enough privilege then add more access privilege on access policy.
 
 1. Give a full CloudWatch Write privilege
 2. Give a full ECR privilege
 
-
-<hr>
 
 #### 2.6. Check pushed image in your local machine
 
@@ -193,14 +198,14 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html
 - Image filename : imagedefinition.json (The file name you added in previous step)
 - Input artifacts : Specify the artifact name of previous stage
 
-![ECS](imgs/03/09.png) 
+![ECS](imgs/03/03.png) 
 
 
 #### 4.2 Deploy your application
 
 1. Change code and deploy it
 	
-![ECS](imgs/03/10.png) 	
+![ECS](imgs/03/04.png) 	
 
 
 <hr>
@@ -208,5 +213,82 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html
 
 ### Lab 3-2 : Update your stack with CloudFormation (Continue from Lab 2, section 2)
 
-### 1.
+- ECS has the ability to perform rolling upgrades to your ECS services to minimize downtime during deployments. For more information, see Updating a Service.
+
+- To update one of your services to a new version, adjust the Image parameter in the service template (in services/* to point to the new version of your container image. 
+
+- After you've updated the template, update the deployed CloudFormation stack; CloudFormation and ECS handle the rest.
+
+
+
+### 1. Create a new services definition
+1. Add user-service folder under **service**
+2. Copy antoher service.yml to user-service
+
+### 2. Modify a service.yml 
+
+1. Update the ContainerName and Image parameters
+
+2. Increment the ListenerRule priority number (no two services can have the same priority number - this is used to order the ALB path based routing rules).
+
+3. Change TaskDefinition to create TaskDefintion
+
+```
+            LoadBalancers: 
+                - ContainerName: "user-service"
+                  ContainerPort: 8080
+```
+
+```
+    TaskDefinition:
+        Type: AWS::ECS::TaskDefinition
+        Properties:
+            Family: user-service
+            ContainerDefinitions:
+                - Name: user-service
+                  Essential: true
+                  Image: <your id>.dkr.ecr.ap-southeast-1.amazonaws.com/java-spring-app 
+                  Memory: 1024
+                  PortMappings:
+                    - ContainerPort: 8080
+
+```
+
+```
+            HealthCheckPath: /workshop/users/all
+```
+
+```
+    ListenerRule:
+        Type: AWS::ElasticLoadBalancingV2::ListenerRule
+        Properties:
+            ListenerArn: !Ref Listener
+            Priority: 3
+```
+### 2. Update master.yml 
+
+1. Add a new service 
+```
+    UserService:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3-ap-southeast-1.amazonaws.com/<your bucket>/ecs-cloudformation/services/user-service/service.yaml
+            Parameters:
+                VPC: !GetAtt VPC.Outputs.VPC
+                Cluster: !GetAtt ECS.Outputs.Cluster
+                DesiredCount: 2
+                Listener: !GetAtt ALB.Outputs.Listener 
+                Path: /workshop/users*   
+
+```
+
+```
+Outputs:
+
+    ServiceServiceUrl: 
+        Description: The URL endpoint for the product service
+        Value: !Join [ "/", [ !GetAtt ALB.Outputs.LoadBalancerUrl, "workshop/users/all" ]] 
+```
+
+
 
