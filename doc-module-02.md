@@ -152,13 +152,19 @@ Lauch a whole stack. and test it(see output of CloudFormation)
 
 ### 1. Customize the templates
 
-1. Clone the forked GitHub repository to your local machine.
+1. (Recommendataion) download a zip file from 
+https://github.com/aws-asean-builders/aws-container-workshop/tree/master/lab-03/cloudformation/original
+
+and Unzip it.
+
+1. (Optional) Clone the forked GitHub repository to your local machine.
 
 
 ```
 git clone https://github.com/aws-samples/ecs-refarch-cloudformation.git
 
 ```
+
 
 2. Modify the templates.
 3. Upload them to an Amazon S3 bucket of your choice. Upload master.yml, template, service foders
