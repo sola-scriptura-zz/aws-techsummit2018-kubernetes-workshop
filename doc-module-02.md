@@ -123,6 +123,7 @@ Check a created task
 - Specify Listner port : 80 HTTP
 - Select "Create New" as target group name  
 - Specify Path pattern : /
+- Specify Evaluation Order : 1
 
 
 ![ECS](imgs/02/05.png) 
