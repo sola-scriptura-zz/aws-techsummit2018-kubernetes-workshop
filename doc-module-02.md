@@ -143,6 +143,9 @@ Check a created task
 #### Confgratulation! You added 2 services in your ECS cluster.
  
 
+<hr>
+<hr>
+
 ### 2. Create a ECS cluster using CloudFormation
 
 Use : 
