@@ -166,7 +166,7 @@ docker run -d -p 80:8080 --name=hello-world 6f9c0d0b1c56
 docker ps
 ```
 
-### 3 Create CICD for docker (new cluster)
+### 3 Create a CICD for docker (new cluster)
 
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html
 
@@ -231,7 +231,7 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cd-pipeline.html
 
 2. Increment the ListenerRule priority number (no two services can have the same priority number - this is used to order the ALB path based routing rules).
 
-3. Change TaskDefinition to create TaskDefintion
+3. Change TaskDefinition field to create a task definition
 
 ```
             LoadBalancers: 
