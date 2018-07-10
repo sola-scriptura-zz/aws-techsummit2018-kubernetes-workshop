@@ -174,8 +174,11 @@ git clone https://github.com/aws-samples/ecs-refarch-cloudformation.git
 3. Upload them to an Amazon S3 bucket of your choice. Upload master.yml, template, service foders
 
 - master.yml
-  +- infrastructure\*
-  +- services\*
+
+  +- infrastructure/*
+
+  +- services/*
+
 
 4. Either create a new CloudFormation stack by deploying the master.yaml template, or update your existing stack with your version of the templates.
 

@@ -2,7 +2,7 @@
 ## Lab 3 : CI/CD for ECS
 - Use a Lab-01 source and images to complete this lab.
 
-### 1. Configure CodeCommit and Git credentials
+### 1. Configure CodeCommit and Push your codes
 
 #### 1.1. Create a CodeCommit repository
  
@@ -12,23 +12,78 @@
 1. create a repository in CodeCommit
 
 ```
- aws codecommit create-repository --repository-name java-workshop-docker --region <YOUR REGION>    
+ aws codecommit create-repository --repository-name <your repo name> --region <YOUR REGION>    
 ```
 
-2. Download your CodeCommeit credentials from IAM
+2. Clone your git repo
+
+```
+git clone <your repo URL>
+```
+
+![project template](./imgs/03/00.png)
+
+3. Push your first code
+
+```
+cd <your repo directory>
+vi Readme.md
+
+git add .
+git commit -m "first"
+git push
+```
+
+#### 1.2. Commit a source to new CodeCommit repository
+
+1. Copy your sorce codes into your project derectory you careated above step
+
+```
+cp -R ~/environment/aws-container-workshop/lab-01/* ~/environment/<your-repo>
+
+```
+
+2. Commit source code
 	
-3. Create a credentials
-
 ```
-git config --global credential.helper '!aws codecommit credential-helper $@'
-git config --global credential.UseHttpPath true
-      
+git add .
+git commit -m "first"
+git push
 ```
 
-#### 1.2 Create CodeBuild Service Role for docker images
+
+#### 1.3 Create CodeBuild Service Role for docker images
 
 1. Give a full CloudWatch Write privilege
 2. Give a full ECR privilege
+3. Give a full S3 access privilege
+3. Give a full CodeCommit access
+
+Create a policy "CodeBuild-Build-Policy"
+Create a Role for CodeBuil and attach above policy
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecs:*",
+        "ecr:*",
+        "s3:*",
+        "codecommit:*",
+        "autoscaling:Describe*",
+        "cloudwatch:*",
+        "logs:*",
+        "sns:*"       
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+
+```
 
 
 ### 2. Create a builder project for a docker image
@@ -97,29 +152,9 @@ aws codebuild create-project --cli-input-json file://create-java-builder.json
 aws codebuild create-project --cli-input-json file://create-dock-builder.json
 ```
 
+#### 2.3 Change buildspec.yml
 
-#### 2.3. Commit a source to new CodeCommit repository
 
-1. Clone CodeCommit repo in your local directory
-
-```
-cd <your workspace>
-
-git clone <REPO>
-
-cd java-workshop-docker
-
-cp -R <YOUR PROJECT>/* .
-
-```
-
-2. Commit source code
-	
-```
-git add .
-git commit -m "first"
-git push
-```
 
 #### 2.4. Start Build
 - Run each CodeBuild, first, java builder then run docker builder
