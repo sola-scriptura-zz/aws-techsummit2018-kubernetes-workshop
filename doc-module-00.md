@@ -87,9 +87,8 @@ source /etc/profile.d/maven.sh
 echo $PATH             
 ```
 
-5. Install AWS CLI
-6. Install ECS-CLI
-https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html
+5. Install AWS CLI and cofigure it
+https://docs.aws.amazon.com/cli/latest/userguide/installing.html
 
 
 ### 1.4 Install docker
@@ -98,3 +97,9 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation
 sudo yum install docker
 docker --help
 ```
+
+### 1.5 Install all other tools
+1. curl
+2. 
+3. Install ECS-CLI (optional)
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html

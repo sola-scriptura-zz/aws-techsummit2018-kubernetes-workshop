@@ -12,7 +12,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - aws ecr get-login --no-include-email --region ap-southeast-1 | sh
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG . --build-arg JAR_FILE="module-09.jar"
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG . --build-arg JAR_FILE="lab-01-0.1.0.jar"
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
   post_build:
     commands:

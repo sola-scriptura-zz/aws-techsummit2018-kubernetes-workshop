@@ -22,7 +22,7 @@
       },
       {
         "name": "IMAGE_REPO_NAME",
-        "value": "java-workshop"
+        "value": "java-spring-app"
       },
       {
         "name": "IMAGE_TAG",

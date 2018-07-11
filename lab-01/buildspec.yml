@@ -4,13 +4,13 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - mvn package
+      - mvn compile package -Dmaven.test.skip=true
       - rm buildspec.yml
       - mv buildspec_docker.yml buildspec.yml
 artifacts:
   type: zip
   files:
-    - 'target/module-09.jar'
+    - 'target/lab-01-0.1.0.jar'
     - 'Dockerfile'
     - 'buildspec.yml'
     - 'imagedefinition.json'   

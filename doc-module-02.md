@@ -1,4 +1,4 @@
-## Lab 2 : Amazon ECS, first Deployment using CLI and CloudFormation
+## Lab 2 : Amazon ECS, First Deployment using Console and CloudFormation
 
 ### 1. Create a ECS in your console
 
@@ -123,6 +123,7 @@ Check a created task
 - Specify Listner port : 80 HTTP
 - Select "Create New" as target group name  
 - Specify Path pattern : /
+- Specify Evaluation Order : 1
 
 
 ![ECS](imgs/02/05.png) 
@@ -143,12 +144,48 @@ Check a created task
 #### Confgratulation! You added 2 services in your ECS cluster.
  
 
+<hr>
+<hr>
+
 ### 2. Create a ECS cluster using CloudFormation
 
 Use : 
 https://github.com/aws-samples/ecs-refarch-cloudformation
 
 Lauch a whole stack. and test it(see output of CloudFormation)
+
+### 1. Customize the templates
+
+1. (Recommendataion) download a zip file from 
+https://github.com/aws-asean-builders/aws-container-workshop/tree/master/lab-03/cloudformation/original
+
+and Unzip it.
+
+1. (Optional) Clone the forked GitHub repository to your local machine.
+
+
+```
+git clone https://github.com/aws-samples/ecs-refarch-cloudformation.git
+
+```
+
+
+2. Modify the templates.
+3. Upload them to an Amazon S3 bucket of your choice. Upload master.yml, template, service foders
+
+- master.yml
+
+  +- infrastructure/*
+
+  +- services/*
+
+
+4. Either create a new CloudFormation stack by deploying the master.yaml template, or update your existing stack with your version of the templates.
+
+
+5. Change master.yml to point out your file location.
+
+### 2. Lauch the stack with CloudFormaton
 
 
 <hr>
