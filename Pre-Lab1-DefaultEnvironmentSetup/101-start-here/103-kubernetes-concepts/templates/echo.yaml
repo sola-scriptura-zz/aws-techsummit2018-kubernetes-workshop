@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-pod
+  template:
+    metadata:
+      labels:
+        app: echo-pod
+    spec:
+      containers:
+      - name: echoheaders
+        image: k8s.gcr.io/echoserver:1.10
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
