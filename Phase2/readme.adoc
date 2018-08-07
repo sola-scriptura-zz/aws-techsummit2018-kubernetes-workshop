@@ -2,7 +2,359 @@
 :toc:
 
 == Lab3 Kubernetes cluster architecture and deployment model
+
+=== Deployment: Create EKS Cluster
+
+Create an EKS cluster based upon Limited Preview instructions.
+
+=== Deployment: Create Cluster using kops
+
+. Install kops
+
+  brew update && brew install kops
+
+. Create an S3 bucket and setup `KOPS_STATE_STORE`:
+
+  aws s3 mb s3://kubernetes-aws-io
+  export KOPS_STATE_STORE=s3://kubernetes-aws-io
+
+. Define an envinronment variable for Availability Zones for the cluster:
+
+  export AWS_AVAILABILITY_ZONES="$(aws ec2 describe-availability-zones --query 'AvailabilityZones[].ZoneName' --output text | awk -v OFS="," '$1=$1')"
+
+. Create cluster:
+
+  kops create cluster \
+    --name=cluster.k8s.local \
+    --zones=$AWS_AVAILABILITY_ZONES \
+    --yes
+
+By default, it creates a single master and 2 worker cluster spread across the AZs.
+
+=== Deployment: Standalone Manifests
+
+Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
+
+. Apply the manifests: `kubectl apply -f apps/k8s/standalone/manifest.yml`
+. Access the application: `curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')`
+. Delete the application: `kubectl delete -f apps/k8s/standalone/manifest.yml`
+
 == Lab4 Kubernetes key add-on and operation (Promethous, Helm, Kubepack, CNI, CSI, etc.)
+=== Deployment: Helm
+
+Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster. Also, make sure Helm is installed on that Kubernetes cluster.
+
+. Install the Helm CLI: `brew install kubernetes-helm`
+. Install Helm in Kubernetes cluster: `helm init`
+. Install the Helm chart: `helm install --name myapp apps/k8s/helm/myapp`
+.. By default, the `latest` tag for an image is used. Alternatively, a different tag for the image can be used:
+
+  helm install --name myapp apps/k8s/helm/myapp --set "docker.tag=<tag>"
+
+. Access the application:
+
+  curl http://$(kubectl get svc/myapp-webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+. Delete the Helm chart: `helm delete --purge myapp`
+
+=== Deployment: Ksonnet
+
+Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
+
+. Install `ksonnet` from `homebrew` tap: `brew install ksonnet/tap/ks`
+. Change into the ksonnet sub directory: `cd apps/k8s/ksonnet/myapp`
+. Add the environment: `ks env add default`
+. Deploy the manifests: `ks apply default`
+. Access the application: `curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')`
+. Delete the application: `ks delete default`
+
+=== Deployment: Kubepack
+
+This section will explain how to use https://kubepack.com/[Kubepack] to deploy your Kubernetes application.
+
+. Install `kubepack` CLI:
+
+  wget -O pack https://github.com/kubepack/pack/releases/download/0.1.0/pack-darwin-amd64 \
+    && chmod +x pack \
+    && sudo mv pack /usr/local/bin/
+
+. Move to package root directory: `cd apps/k8s/kubepack`
+. Pull dependent packages:
++
+  pack dep -f .
++
+This will generate `manifests/vendor` folder.
++
+. Generate final manifests: Combine the manifests for this package and its dependencies and potential patches into the final manifests:
++
+  pack up -f .
++
+This will create `manifests/output` folder with an installer script and final manifests.
++
+. Install package: `./manifests/output/install.sh`
+. Access the application:
+
+  curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+. Delete the application: `kubectl delete -R -f manifests/output`
+
+=== Deployment: Local Dev & Test using Draft
+
+https://github.com/aws-samples/aws-microservices-deploy-options/issues/208
+
+. Install Draft:
+
+  brew tap Azure/draft
+  brew install Azure/draft/draft
+
+. Initialize:
+
+  draft init
+
+. Create Draft artifacts to containerize and deploy to k8s:
+
+  draft create
+
+Following issues are identified so far:
+
+. https://github.com/Azure/draft/issues/726
+. https://github.com/Azure/draft/issues/727
+. https://github.com/Azure/draft/issues/728
+. https://github.com/Azure/draft/issues/729
+. https://github.com/Azure/draft/issues/730
+
 == Lab5 Integration with DevOps tools (CodePipeline, codeBUild, CodeCommit, Spinnaker)
+=== Deployment Pipeline: AWS Codepipeline
+
+This section explains how to setup a deployment pipeline using AWS CodePipeline.
+
+CloudFormation templates for different regions are listed at https://github.com/aws-samples/aws-kube-codesuite. `us-west-2` is listed below.
+
+|===
+|Region | Launch Template
+| *Oregon* (us-west-2)
+a| image::./images/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Codesuite-Demo&templateURL=https://s3.amazonaws.com/codesuite-demo-public/aws-refarch-codesuite-kubernetes.yaml]
+|===
+
+. Create Git credentials for HTTPS connections to AWS CodeCommit: https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html?icmpid=docs_acc_console_connect#setting-up-gc-iam
+. Reset any stored git credentials for CodeCommit in the keychain. Open `Keychain Access`, search for `codecommit` and remove any related entries.
+. Get CodeCommit repo URL from CloudFormation output and follow the instructions at https://github.com/aws-samples/aws-kube-codesuite#test-cicd-platform.
+
+=== Deployment Pipeline: Jenkins
+
+Create a deployment pipeline using http://jenkins-x.io/[Jenkins X].
+
+. Install Jenkins X CLI:
+
+  brew tap jenkins-x/jx
+  brew install jx
+
+. Create the Kubernetes cluster:
++
+  jx create cluster aws
++
+This will create a Kubernetes cluster on AWS using kops. This cluster will have RBAC enabled. It will also have insecure registries enabled. These are needed by the pipeline to store Docker images.
++
+. Clone the repo:
+
+  git clone https://github.com/arun-gupta/docker-kubernetes-hello-world
+
+. Import the project in Jenkins X:
++
+  jx import
++
+This will generate `Dockerfile` and Helm charts, if they don't already exist. It also creates a `Jenkinsfile` with different build stages identified. Finally, it triggers a Jenkins build and deploy the application in a staging environment by default.
++
+. View Jenkins console using `jx console`. Select the user, project and branch to see the deployment pipeline.
+. Get the staging URL using `jx get apps` and view the output from the application in a browser window.
+. Now change the message in displayed from `HelloHandler` and push to the GitHub repo. Make sure to change the corresponding test as well otherwise the pipeline will fail. Wait for the deployment to complete and then refresh the browser page to see the updated output.
+
+=== Deployment Pipeline: Gitkube
+
+https://github.com/aws-samples/aws-microservices-deploy-options/issues/88
+
+. Deploy the greeting service
+. Install Gitkube:
+
+  kubectl create -f https://storage.googleapis.com/gitkube/gitkube-setup-stable.yaml
+  kubectl --namespace kube-system expose deployment gitkubed --type=LoadBalancer --name=gitkubed
+
+. Configure secret for Docker registry in the cluster:
+
+  kubectl create secret \
+    docker-registry gitkube-secret \
+    --docker-server=https://index.docker.io/v1/ \
+    --docker-username=arungupta \
+    --docker-password='<password>' \
+    --docker-email=help@example.com
+
+. Create a Remote resource manifest based upon `greeting-remote.yaml`
+. Create the Remote resource:
+
+  kubectl apply -f greeting-remote.yaml
+
+. Add remote to git repo:
+
+  git remote add gitkube `kubectl get remote greeting -o jsonpath='{.status.remoteUrl}'`
+
+=== Deployment Pipeline: Spinnaker
+
+link:spinnaker.md[Deploy with Spinnaker]
+
+=== Deployment Pipeline: Skaffold
+
+link:skaffold.md[Deployment with Skaffold]
+
+=== Deployment: Canary Deployment with Istio
+
+https://istio.io/[Istio] allows the deployment of canary services. This is done by using a simple DSL that controls how API calls and layer-4 traffic flow across various services in the application deployment.
+
+. Install Istio in the Kubernetes cluster:
+
+  curl -L https://git.io/getLatestIstio | sh -
+  cd istio-0.7.1/
+  kubectl apply -f install/kubernetes/istio.yaml
+
+. Istio uses the Envoy proxy to manage all inbound/outbound traffic in the service mesh. Envoy proxy needs to be injected as sidecar into the application. So, we'll deploy the application:
++
+  kubectl apply -f <(istioctl kube-inject -f apps/k8s/istio/manifest.yaml)
++
+This will deploy the application with 3 microservices. Each microservice is deployed in its own pod, with the Envoy proxy injected into the pod; Envoy will now take over all network communications between the pods.
++
+. Create route rules:
+
+  kubectl apply -f apps/k8s/istio/route-50-50.yaml
+
+. Access the application:
++
+  curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
++
+Access the endpoint multiple times and notice how `Hello` and `Howdy` greeting is returned. Its not a round-robin but over 100 requests, 50% would be split between different greeting message.
++
+This is causing https://github.com/aws-samples/aws-microservices-deploy-options/issues/239.
+
+Here are some convenient commands to manage route rules:
+
+. `istioctl get routerules` shows the list of all route rules
+. `istioctl delete routerule <name>` deletes a route rule by name
+
+Another route with the traffic split of 90% and 10% is at `apps/k8s/istio/route-90-10.yaml`.
+
+=== Monitoring: AWS X-Ray
+
+. `arungupta/xray:us-west-2` Docker image is already available on Docker Hub. Optionally, you may build the image:
+
+  cd config/xray
+  docker build -t arungupta/xray:latest .
+  docker image push arungupta/xray:us-west-2
+
+. Deploy the DaemonSet: `kubectl apply -f xray-daemonset.yaml`
+. Deploy the application link:#deployment-helm[using Helm charts]:
+
+  helm install --name myapp apps/k8s/helm/myapp
+
+. Access the application:
+
+  curl http://$(kubectl get svc/myapp-webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+. Open the https://us-west-2.console.aws.amazon.com/xray/home?region=us-west-2#/service-map[X-Ray console] and watch the service map and traces.
+
+X-Ray Service map looks like:
+
+image::images/k8s-xray-service-map.png[]
+
+X-Ray traces looks like:
+
+image::images/k8s-xray-traces.png[]
+
+=== Monitoring: Conduit
+https://conduit.io/[Conduit] is a small, ultralight, incredibly fast service mesh centered around a zero config approach. It can be used for gaining remarkable visibility in your Kubernetes deployments.
+
+. Confirm that both Kubernetes client and server versions are v1.8.0 or greater using `kubectl version --short`
+
+. Install the Conduit CLI on your local machine:
+
+  curl https://run.conduit.io/install | sh
+
+. Add the `conduit` command into your PATH:
+
+  export PATH=$PATH:$HOME/.conduit/bin
+
+. Verify the CLI is installed and running correctly. You will see a message that says 'Server version: unavailable' because you have not installed Conduit in your deployments.
+
+  conduit version
+
+. Install Conduit on your Kubernetes cluster. It will install into a separate `conduit` namespace, where it can be easily removed.
+
+  conduit install | kubectl apply -f -
+
+. Verify installation of Conduit into your cluster. Your Client and Server versions should now be the same.
+
+  conduit version
+
+. Verify the Conduit dashboard opens and that you can connect to Conduit in your cluster.
+
+  conduit dashboard
+
+. Install the demo app to see how Conduit handles monitoring of your Kubernetes applications.
+
+  curl https://raw.githubusercontent.com/runconduit/conduit-examples/master/emojivoto/emojivoto.yml | conduit inject - | kubectl apply -f -
+
+. You now have a demo application running on your Kubernetes cluster and also added to the Conduit service mesh. You can see a http://emoji.voto/[live version] of this app (not in your cluster) to understand what this demo app is. Click to vote your favorite emoji. One of them has an error. Which one is it? You can also see the local version of this app running in your cluster:
+
+  kubectl get svc web-svc -n emojivoto -o jsonpath="{.status.loadBalancer.ingress[0].*}"
+
+The demo app includes a service (`vote-bot`) constantly running traffic through the demo app. Look back at the `conduit dashboard`. You should be able to browse all the services that are running as part of the application to view success rate, request rates, latency distribution percentiles, upstream and downstream dependencies, and various other bits of information about live traffic.
+
+You can also see useful data about live traffic from the `conduit` CLI.
+
+. Check the status of the demo app (`emojivoto`) deployment named `web`. You should see good latency, but a success rate indicating some errors.
+
+  conduit stat -n emojivoto deployment web
+
+. Determine what other deployments in the `emojivoto` namespace talk to the web deployment.
+
+  conduit stat deploy --all-namespaces --from web --from-namespace emojivoto
+
+. You should see that `web` talks to both the `emoji` and `voting` services. Based on their success rates, you should see that the `voting` service is responsible for the low success rate of requests to `web`. Determine what else talks to the `voting` service.
+
+  conduit stat deploy --to voting --to-namespace emojivoto --all-namespaces
+
+. You should see that it only talks to `web`. You now have a plausible target to investigate further since the `voting` service is returning a low success rate. From here, you might look into the logs, or traces, or other forms of deeper investigation to determine how to fix the error.
+
+
+=== Monitoring: Istio and Prometheus
+
+Istio is deployed as a sidecar proxy into each of your pods; this means it can see and monitor all the traffic flows between your microservices and generate a graphical representation of your mesh traffic.
+
+. Prometheus addon will obtain the metrics from Istio. Install Prometheus:
+
+  kubectl apply -f install/kubernetes/addons/prometheus.yaml
+
+. Install the Servicegraph addon; Servicegraph queries Prometheus, which obtains details of the mesh traffic flows from Istio:
+
+  kubectl apply -f install/kubernetes/addons/servicegraph.yaml
+
+. Generate some traffic to the application:
+
+  curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+. View the ServiceGraph UI:
+
+  kubectl -n istio-system \
+    port-forward $(kubectl -n istio-system \
+      get pod \
+      -l app=servicegraph \
+      -o jsonpath='{.items[0].metadata.name}') \
+      8088:8088 &
+  open http://localhost:8088/dotviz
+
+. You should see a distributed trace that looks something like this. It may take a few seconds for Servicegraph to become available, so refresh the browser if you do not receive a response.
++
+image::images/istio-servicegraph.png[]
+
+=== Monitoring: Prometheus and Grafana
+
+https://github.com/aws-samples/aws-microservices-deploy-options/issues/79
 == Lab6 Lifecycle management of deployed applications (update and scaling)
 == Lab7 Logging Kubernetes cluster using Elasticsearch, Fluentd and Kibana
