@@ -109,7 +109,23 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 
   mvn package -Pdocker -Ddocker.tag=<tag>
 
+=== Running Docker container from local repository
+
+  $ Docker run -d -p 8081:8081 arungupta/greeting
+  $ curl http://localhost:8081/resources/greeting
+
 === Push Docker Images to Registry
+
+IAM Role 에 EC2ContainerRepository 권한 부여 
+
+
+ECS 에 Docker 를 배포하기 위하여 ECR 레포지토리를 생성 
+
+  $ aws ecr create-repository --repository-name yjeong-greeting
+
+Docker 이미지를 ECR 에 푸싱 하기 위하여 태깅
+
+  $ Docker tag 
 
 Push Docker images to the registry:
 
@@ -209,7 +225,7 @@ This section explains how to create a Fargate cluster and run services on it.
   fargate service create greeting-service \
     --lb microservices-lb \
     -m 1024 \
-    -i arungupta/greeting \
+    -i <ECR Docker Image URI>\
     -p http:8081 \
     --rule path=/resources/greeting
 
@@ -218,7 +234,7 @@ This section explains how to create a Fargate cluster and run services on it.
   fargate service create name-service \
     --lb microservices-lb \
     -m 1024 \
-    -i arungupta/name \
+    -i <ECR Docker Image URI>\
     -p http:8082 \
     --rule path=/resources/names/*
 
@@ -231,7 +247,7 @@ This section explains how to create a Fargate cluster and run services on it.
   fargate service create webapp-service \
     --lb microservices-lb \
     -m 1024 \
-    -i arungupta/webapp \
+    -i <ECR Docker Image URI> \
     -p http:8080 \
     -e GREETING_SERVICE_HOST=<lb> \
     -e GREETING_SERVICE_PORT=80 \
