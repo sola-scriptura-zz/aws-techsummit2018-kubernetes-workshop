@@ -9,15 +9,74 @@ This repo contains a simple application that consists of three microservices. Th
 
 Each application is deployed using different AWS Compute options.
 
-== Lab1 개발 단계에서 어플리케이션을 설계하고 도커라이징 할 때 고려해 할 사항
+== Lab1 Build your Docker image for MSA
+개발 단계에서 어플리케이션을 설계하고 도커라이징 할 때 고려해 할 사항
 
-== Lab2 클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계
+=== Cloud9 의 자바 환경 구성 및 Maven 설치
+This sample enables you to run some Java code in an AWS Cloud9 development environment.
 
-== 개발 장비에서 Dockerizing 하기
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as Amazon EC2 and Amazon S3.
 
-== ECS 에 배포 하기
+==== Step1: Install Required Tools
 
-== Build and Test Services using Maven
+In this step, you install a set of Java development tools in your AWS Cloud9 development environment. If you already have a set of Java development tools such as the Oracle JDK or OpenJDK installed in your environment, you can skip ahead to Step 2: Add Code. This sample was developed with OpenJDK 8, which you can install in your environment by completing the following procedure.
+
+1. Confirm whether OpenJDK 8 is already installed. To do this, in a terminal session in the AWS Cloud9 IDE, run the command line version of the Java runner with the -version option. (To start a new terminal session, on the menu bar, choose Window, New Terminal.)
+
+  $ java -version
+
+Based on the output of the preceding command, do one of the following:
+
+* If the output states that the java command isn't found, continue with step 2 in this procedure to install OpenJDK 8.
+* If the output contains values starting with Java(TM), Java Runtime Environment, Java SE, J2SE, or Java2, the OpenJDK isn't installed or isn't set as the default Java development toolset. Continue with step 2 in this procedure to install OpenJDK 8, and then switch to using OpenJDK 8.
+* If the output contains values starting with java version 1.8 and OpenJDK, skip ahead to Step 2: Add Code. OpenJDK 8 is installed correctly for this sample.
+* If the output contains a java version less than 1.8 and values starting with OpenJDK, continue with step 2 in this procedure to upgrade the installed OpenJDK version to OpenJDK 8.
+
+2. Ensure the latest security updates and bug fixes are installed. To do this, run the yum tool with the update command.
+
+  $ sudo yum -y update
+
+3. Install OpenJDK 8. To do this, run the yum tool with the install command, specifying the OpenJDK 8 package.
+
+  $ sudo yum -y install java-1.8.0-openjdk-devel
+
+4. Switch or upgrade the default Java development toolset to OpenJDK 8. To do this, run the update-alternatives command with the --config option. Run this command twice to switch or upgrade the command line versions of the Java runner and compiler.
+
+  $ sudo update-alternatives --config java
+  $ sudo update-alternatives --config javac
+
+At each prompt, type the selection number for OpenJDK 8 (the one that contains java-1.8).
+
+5. Confirm that the command line versions of the Java runner and compiler are using OpenJDK 8. To do this, run the command line versions of the Java runner and compiler with the -version option.
+
+  $ java -version
+  $ javac -version
+
+If OpenJDK 8 is installed and set correctly, the Java runner version output contains a value starting with openjdk version 1.8, and the Java compiler version output starts with the value javac 1.8.
+
+==== Step 2: Set Up to Use the AWS SDK for Java
+You can enhance this sample to use the AWS SDK for Java to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created.
+
+In this step, you install Apache Maven or Gradle in your environment. Maven and Gradle are common build automation systems that can be used with Java projects. After you install Maven or Gradle, you use it to generate a new Java project. In this new project, you add a reference to the AWS SDK for Java. This AWS SDK for Java provides a convenient way to interact with AWS services such as Amazon S3, from your Java code.
+
+===== Set Up with Maven 
+1. Install Maven in your environment. To see whether Maven is already installed, using the terminal in the AWS Cloud9 IDE, run Maven with the -version option.
+
+  $ mvn -version
+
+If successful, the output contains the Maven version number. If Maven is already installed, skip ahead to step 4 in this procedure to use Maven to generate a new Java project in your environment.
+
+2. Install Maven by using the terminal to run the following commands. These commands get information about the package repository where Maven is stored, and then use this information to install Maven.
+
+  $ sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+  $ sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+  $ sudo yum install -y apache-maven
+
+3. Confirm the installation by running Maven with the -version option.
+
+  $ mvn -version
+
+=== Build and Test Services using Maven
 
 . Each microservice is in a different repo:
 +
@@ -38,8 +97,6 @@ Each application is deployed using different AWS Compute options.
 . Run `webapp` service: `mvn wildfly-swarm:run`
 . Run the application: `curl http://localhost:8080/`
 
-== Docker
-
 === Create Docker Images
 
 `mvn package -Pdocker` for each repo will create the Docker image.
@@ -57,17 +114,6 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 Push Docker images to the registry:
 
   mvn install -Pdocker
-
-=== Deployment to Docker Swarm
-
-. `docker swarm init`
-. `cd apps/docker`
-. `docker stack deploy --compose-file docker-compose.yaml myapp`
-. Access the application: `curl http://localhost:8080`
-.. Optionally test the endpoints:
-... Greeting endpoint: `curl http://localhost:8081/resources/greeting`
-... Name endpoint: `curl http://localhost:8082/resources/names/1`
-. Remove the stack: `docker stack rm myapp`
 
 ==== Debug
 
@@ -87,6 +133,9 @@ Push Docker images to the registry:
 
   docker service logs myapp_webapp-service
 
+
+== ECS 에 배포 하기
+== Lab2 클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계
 
 === Deployment: Create Cluster using AWS Console
 
