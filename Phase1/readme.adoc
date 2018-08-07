@@ -133,9 +133,8 @@ Push Docker images to the registry:
 
   docker service logs myapp_webapp-service
 
-
-== ECS 에 배포 하기
-== Lab2 클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계
+== Lab2 ECS 에 배포 하기 
+클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계, fargate cli 설치 
 
 === Deployment: Create Cluster using AWS Console
 
