@@ -91,7 +91,7 @@ You are now ready to continue on with the workshop!
 :grid: none
 :valign: top
 
-The next step is link:../102-your-first-cluster[to create a Kubernetes cluster].
+The next step is link:./Phase1[to build Docker images].
 
 
 == Workshop Cleanup
