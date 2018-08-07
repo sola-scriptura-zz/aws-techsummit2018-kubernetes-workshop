@@ -32,12 +32,12 @@ Please choose the region closest to you.  If you choose a region for Cloud9 that
 
 |Region | Launch template with a new VPC | Launch template with an existing VPC
 | *N. Virginia* (us-east-1)
-a| image::./deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-vpc.template]
-a| image::./deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-novpc.template]
+a| image::./img/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-vpc.template]
+a| image::./img/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-novpc.template]
 
 | *Oregon* (us-west-2)
-a| image::./deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-vpc.template]
-a| image::./deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-novpc.template]
+a| image::./img/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-vpc.template]
+a| image::./img/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-novpc.template]
 
 |===
 
@@ -47,17 +47,17 @@ to check *I acknowledge that AWS CloudFormation might create IAM resources with 
 CloudFormation creates nested stacks and builds several resources that are required for this workshop. Wait until all the resources are created. Once the status for *k8s-workshop* changes to *CREATE_COMPLETE*,
 you can open Cloud9 IDE. To open the Cloud9 IDE environment, click on the "Outputs" tab in CloudFormation Console and click on the "Cloud9IDE" URL.
 
-image:cloudformation-output-tab.png[CloudFormation Output Tab]
+image:./imgs/cloudformation-output-tab.png[CloudFormation Output Tab]
 
 You should see an environment similar to this:
 
-image:cloud9-development-environment-welcome.png[]
+image:./imgs/cloud9-development-environment-welcome.png[]
 
 === Cloud9 Instance Role
 
 The Cloud9 IDE needs to use the assigned IAM Instance profile. Open the "AWS Cloud9" menu, go to "Preferences", go to "AWS Settings", and disable "AWS managed temporary credentials" as depicted in the diagram here:
 
-image:cloud9-disable-temp-credentials.png[]
+image:./imgs/cloud9-disable-temp-credentials.png[]
 
 === Build Script
 
@@ -77,7 +77,7 @@ To install the script, run this command in the "bash" terminal tab of the Cloud9
     chmod +x lab-ide-build.sh && \
     . ./lab-ide-build.sh
 
-image:cloud9-run-script.png[Running the script in Cloud9 Terminal]
+image:./imgs/cloud9-run-script.png[Running the script in Cloud9 Terminal]
 
 
 At this point you can restart the Cloud9 IDE terminal session to ensure that the kubectl completion is enabled. Once a new terminal window is opened, type `kubectl ver` and press `Tab` to autocomplete and press `Enter`. This will ensure that the `kubectl` tool is installed on the command line correctly and can autocomplete.
