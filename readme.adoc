@@ -1,5 +1,14 @@
 = Introduce Tech Summit Kubernetes Hands-on Lab
 :toc:
+:icons:
+:linkattrs:
+:imagesdir: imgs
+
+image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
+
+== Operations Path Index
+
+This path is suitable for operations teams interested in deploying, managing, and scaling clusters with Kubernetes.
 
 These days, container services are being considered in various sectors to be operated at the production level thanks to its fast and easy deployment. Having said that, enterprise customers are also participating in the adoption of container services when implementing a development environment, although it is still in limited use cases. However, it is commonly regarded that, to be used as a service in the production environment, container services cause operational difficulties due to high technical obstacles and operation burden.
 
@@ -588,4 +597,4 @@ To remove all the resources created by the example, do the following:
 .. S3 Bucket: ArtifactBucket
 .. ECR Repository: Repository
 
-Now you are ready for the start the labs. Go next Phase1 link:./Phase1/readme.adoc[Go Phase1 - Kubernetes Operation Basic]
+Now you are ready for the start the labs. Go next Phase1 link:./Phase1/readme.adoc[Go Phase1 - Kubernetes Operation]

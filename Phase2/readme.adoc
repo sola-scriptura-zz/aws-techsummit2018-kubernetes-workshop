@@ -1,13 +1,29 @@
-= Kubernetes Basic Operation
+= Kubernetes Deploy and Development 
 :toc:
+:icons:
+:linkattrs:
+:imagesdir: imgs
 
-=== Deployment: Standalone Manifests
+image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
 
-Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
+== Operations Path Index
 
-. Apply the manifests: `kubectl apply -f apps/k8s/standalone/manifest.yml`
-. Access the application: `curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')`
-. Delete the application: `kubectl delete -f apps/k8s/standalone/manifest.yml`
+This path is suitable for operations teams interested in deploying, managing, and scaling clusters with Kubernetes.
+
+:frame: none
+:grid: none
+:valign: top
+:halign: center
+
+[cols="1*^",grid="cols",options="header"]
+|=====
+|link:02-path-working-with-clusters/201-cluster-monitoring[201: Monitoring a Kubernetes Cluster]
+|link:02-path-working-with-clusters/202-service-mesh[202: Leveraging a Service Mesh]
+|link:02-path-working-with-clusters/203-cluster-upgrades[203: Upgrading a Kubernetes Cluster]
+|link:02-path-working-with-clusters/204-cluster-logging-with-EFK[204: Logging with an EFK Stack]
+|link:02-path-working-with-clusters/205-cluster-autoscaling[205: Autoscaling a Kubernetes Cluster]
+|link:02-path-working-with-clusters/206-cloudformation-and-terraform[206: Deploy Kubernetes with Terraform and CloudFormation]
+|=====
 
 == Lab4 Kubernetes key add-on and operation (Promethous, Helm, Kubepack, CNI, CSI, etc.)
 === Deployment: Helm
@@ -68,147 +84,9 @@ This will create `manifests/output` folder with an installer script and final ma
 
 . Delete the application: `kubectl delete -R -f manifests/output`
 
-=== Deployment: Local Dev & Test using Draft
-
-https://github.com/aws-samples/aws-microservices-deploy-options/issues/208
-
-. Install Draft:
-
-  brew tap Azure/draft
-  brew install Azure/draft/draft
-
-. Initialize:
-
-  draft init
-
-. Create Draft artifacts to containerize and deploy to k8s:
-
-  draft create
-
-Following issues are identified so far:
-
-. https://github.com/Azure/draft/issues/726
-. https://github.com/Azure/draft/issues/727
-. https://github.com/Azure/draft/issues/728
-. https://github.com/Azure/draft/issues/729
-. https://github.com/Azure/draft/issues/730
-
-== Lab5 Integration with DevOps tools (CodePipeline, codeBUild, CodeCommit, Spinnaker)
-=== Deployment Pipeline: AWS Codepipeline
-
-This section explains how to setup a deployment pipeline using AWS CodePipeline.
-
-CloudFormation templates for different regions are listed at https://github.com/aws-samples/aws-kube-codesuite. `us-west-2` is listed below.
-
-|===
-|Region | Launch Template
-| *Oregon* (us-west-2)
-a| image::./images/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Codesuite-Demo&templateURL=https://s3.amazonaws.com/codesuite-demo-public/aws-refarch-codesuite-kubernetes.yaml]
-|===
-
-. Create Git credentials for HTTPS connections to AWS CodeCommit: https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html?icmpid=docs_acc_console_connect#setting-up-gc-iam
-. Reset any stored git credentials for CodeCommit in the keychain. Open `Keychain Access`, search for `codecommit` and remove any related entries.
-. Get CodeCommit repo URL from CloudFormation output and follow the instructions at https://github.com/aws-samples/aws-kube-codesuite#test-cicd-platform.
-
-=== Deployment Pipeline: Jenkins
-
-Create a deployment pipeline using http://jenkins-x.io/[Jenkins X].
-
-. Install Jenkins X CLI:
-
-  brew tap jenkins-x/jx
-  brew install jx
-
-. Create the Kubernetes cluster:
-+
-  jx create cluster aws
-+
-This will create a Kubernetes cluster on AWS using kops. This cluster will have RBAC enabled. It will also have insecure registries enabled. These are needed by the pipeline to store Docker images.
-+
-. Clone the repo:
-
-  git clone https://github.com/arun-gupta/docker-kubernetes-hello-world
-
-. Import the project in Jenkins X:
-+
-  jx import
-+
-This will generate `Dockerfile` and Helm charts, if they don't already exist. It also creates a `Jenkinsfile` with different build stages identified. Finally, it triggers a Jenkins build and deploy the application in a staging environment by default.
-+
-. View Jenkins console using `jx console`. Select the user, project and branch to see the deployment pipeline.
-. Get the staging URL using `jx get apps` and view the output from the application in a browser window.
-. Now change the message in displayed from `HelloHandler` and push to the GitHub repo. Make sure to change the corresponding test as well otherwise the pipeline will fail. Wait for the deployment to complete and then refresh the browser page to see the updated output.
-
-=== Deployment Pipeline: Gitkube
-
-https://github.com/aws-samples/aws-microservices-deploy-options/issues/88
-
-. Deploy the greeting service
-. Install Gitkube:
-
-  kubectl create -f https://storage.googleapis.com/gitkube/gitkube-setup-stable.yaml
-  kubectl --namespace kube-system expose deployment gitkubed --type=LoadBalancer --name=gitkubed
-
-. Configure secret for Docker registry in the cluster:
-
-  kubectl create secret \
-    docker-registry gitkube-secret \
-    --docker-server=https://index.docker.io/v1/ \
-    --docker-username=arungupta \
-    --docker-password='<password>' \
-    --docker-email=help@example.com
-
-. Create a Remote resource manifest based upon `greeting-remote.yaml`
-. Create the Remote resource:
-
-  kubectl apply -f greeting-remote.yaml
-
-. Add remote to git repo:
-
-  git remote add gitkube `kubectl get remote greeting -o jsonpath='{.status.remoteUrl}'`
-
-=== Deployment Pipeline: Spinnaker
-
-link:spinnaker.md[Deploy with Spinnaker]
-
-=== Deployment Pipeline: Skaffold
 
 link:skaffold.md[Deployment with Skaffold]
 
-=== Deployment: Canary Deployment with Istio
-
-https://istio.io/[Istio] allows the deployment of canary services. This is done by using a simple DSL that controls how API calls and layer-4 traffic flow across various services in the application deployment.
-
-. Install Istio in the Kubernetes cluster:
-
-  curl -L https://git.io/getLatestIstio | sh -
-  cd istio-0.7.1/
-  kubectl apply -f install/kubernetes/istio.yaml
-
-. Istio uses the Envoy proxy to manage all inbound/outbound traffic in the service mesh. Envoy proxy needs to be injected as sidecar into the application. So, we'll deploy the application:
-+
-  kubectl apply -f <(istioctl kube-inject -f apps/k8s/istio/manifest.yaml)
-+
-This will deploy the application with 3 microservices. Each microservice is deployed in its own pod, with the Envoy proxy injected into the pod; Envoy will now take over all network communications between the pods.
-+
-. Create route rules:
-
-  kubectl apply -f apps/k8s/istio/route-50-50.yaml
-
-. Access the application:
-+
-  curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-+
-Access the endpoint multiple times and notice how `Hello` and `Howdy` greeting is returned. Its not a round-robin but over 100 requests, 50% would be split between different greeting message.
-+
-This is causing https://github.com/aws-samples/aws-microservices-deploy-options/issues/239.
-
-Here are some convenient commands to manage route rules:
-
-. `istioctl get routerules` shows the list of all route rules
-. `istioctl delete routerule <name>` deletes a route rule by name
-
-Another route with the traffic split of 90% and 10% is at `apps/k8s/istio/route-90-10.yaml`.
 
 === Monitoring: AWS X-Ray
 
