@@ -7,12 +7,12 @@ Several reasons are being observed for such perception. First, the absence of a 
 
 Concerns of enterprise customers are not limited to the operation of container services, but also include network and storage management, configuration management and services for multi-Region deployment, and security. There is a high demand for a one-step guideline or hands-on material that cover all technical matters.
 
-== Read firsst : Description of the overall hands-on lab structure and objectives
+== Read first : Description of the overall hands-on lab structure and objectives
 Hands-on Lab has contained Three phases and Pre Lab. Pre Lab explain full context of Hands-on lab with advance preparation as like the content of this article you are already reading.
 
 link:./slide/2018techsummit-k8s-handson-architecture.pptx[Overall Architecture]
 
-== Pre-Lab0 - Build Structuring a basic environment for operation and management of docker orchestration environment (Cloud9)
+== Pre-Lab0 - Build basic environment for operation 
 This section walks you through the creating a Kubernetes development environment using https://aws.amazon.com/cloud9/[AWS Cloud9].  This will provide you with a cloud-based integrated development environment (IDE) that will let you write, run, and debug containerized workloads using just a web browser.
 
 == Create AWS Cloud9 Environment
@@ -591,3 +591,6 @@ To remove all the resources created by the example, do the following:
 === Monitoring: AWS X-Ray
 
 https://github.com/aws-samples/aws-xray-fargate
+
+You finished first phase. 
+Go next Phase2 link:./Phase2/readme.adoc[Go Phase2]
