@@ -260,4 +260,4 @@ Note that all masters are spread across different AZs.
 
 Your output may differ slightly from the one shown here based up on the type of cluster you created.
 
-Go Next step link:./Phase2/readme.adoc[Phase2 - Kubernetes Operation Basic]
+Go Next step link:../Phase2/readme.adoc[Phase2 - Kubernetes Operation Basic]

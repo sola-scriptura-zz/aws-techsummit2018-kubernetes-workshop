@@ -323,8 +323,7 @@ Istio is deployed as a sidecar proxy into each of your pods; this means it can s
 +
 image::images/istio-servicegraph.png[]
 
-=== Monitoring: Prometheus and Grafana
-
-https://github.com/aws-samples/aws-microservices-deploy-options/issues/79
 == Lab6 Lifecycle management of deployed applications (update and scaling)
 == Lab7 Logging Kubernetes cluster using Elasticsearch, Fluentd and Kibana
+
+Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject link:../Phase3/readme.adoc[Phase3 - Advanced operation for Kubernetes]
