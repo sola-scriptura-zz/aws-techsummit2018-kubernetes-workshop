@@ -258,5 +258,3 @@ Your cluster example.cluster.k8s.local is ready
 Note that all masters are spread across different AZs.
 
 Your output may differ slightly from the one shown here based up on the type of cluster you created.
-
-link:./201-cluster-monitoring[Cluster-moniroting]
