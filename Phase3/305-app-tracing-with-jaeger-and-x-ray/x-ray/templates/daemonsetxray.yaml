@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: xray
+spec:
+  selector:
+    matchLabels:
+      tier: monitoring
+      name: xray
+  template:
+    metadata:
+      labels:
+        tier: monitoring
+        name: xray
+    spec:
+      containers:
+      - name: xray
+        image: <AWS::AccountId>.dkr.ecr.<AWS::Region>.amazonaws.com/xraydaemon:v1
+        ports:
+         - name: xrayport
+           containerPort: 2000
+           hostPort: 2000
+           protocol: UDP

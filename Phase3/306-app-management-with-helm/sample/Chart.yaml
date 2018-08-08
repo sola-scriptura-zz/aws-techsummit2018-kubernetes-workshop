@@ -1,0 +1,15 @@
+name: sample
+version: 1.0.0
+description: My first Helm chart
+keywords:
+  - java
+  - javaee
+  - mysql
+  - wildfly
+  - wildfly swarm
+home: https://github.com/aws-samples/aws-workshop-for-kubernetes
+sources:
+  - https://github.com/aws-samples/aws-workshop-for-kubernetes
+maintainers:
+  - name: Arun Gupta
+    email: arun.gupta@gmail.com

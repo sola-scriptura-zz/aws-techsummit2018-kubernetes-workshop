@@ -1,0 +1,16 @@
+= For Further Reading
+:toc:
+:icons:
+:linkcss:
+:imagesdir: ../../resources/images
+
+Congratulations! You have completed the Kubernetes the AWSome Way! workshop.
+We hope you have enjoyed learning more about Kubernetes on AWS.
+
+Please remember to clean up any resources spun up during this workshop!
+
+You can find instructions for Workshop Cleanup in relevant Index pages
+
+== Further Reading
+
+* link:https://aws.amazon.com/eks[Amazon Elastic Container Service for Kubernetes (EKS)]
