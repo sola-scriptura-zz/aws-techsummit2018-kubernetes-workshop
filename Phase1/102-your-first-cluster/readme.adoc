@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkattrs:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 This section will walk you through how to install a Kubernetes cluster on AWS using EKS.
 
