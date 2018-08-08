@@ -592,5 +592,4 @@ To remove all the resources created by the example, do the following:
 
 https://github.com/aws-samples/aws-xray-fargate
 
-You finished first phase. 
-# Go next Phase2 link:./Phase2/readme.adoc[Go Phase2]
+You finished first phase. Go next Phase2 link:./Phase2/readme.adoc[Go Phase2]
