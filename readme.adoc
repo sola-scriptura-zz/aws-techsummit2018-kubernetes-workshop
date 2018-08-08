@@ -1,10 +1,11 @@
 = Welcome to Tech Summit Kubernetes Hands-on Lab
-:toc:
 :icons:
 :linkattrs:
-:imagesdir: imgs
+:imagesdir: ./imgs
 
 image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
+
+:toc:
 
 These days, container services are being considered in various sectors to be operated at the production level thanks to its fast and easy deployment. Having said that, enterprise customers are also participating in the adoption of container services when implementing a development environment, although it is still in limited use cases. However, it is commonly regarded that, to be used as a service in the production environment, container services cause operational difficulties due to high technical obstacles and operation burden.
 
