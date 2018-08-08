@@ -89,14 +89,11 @@ All shell commands _(starting with "$")_ throughout the rest of the workshop sho
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
 
-The next step is link:./Phase1[Technical Fundamental Hardning - Build and Deploy Container as MSA].
+== Pre-Lab1 - Technical Fundamental Hardning - Build and Deploy Container as MSA
 
-== Pre-Lab1 - 
-This repo contains a simple application that consists of three microservices. The sample application uses three services:
+To ensure the docker container deploy operation. Please take this lab. 
+The lab contains a simple application that consists of three microservices. The sample application uses three services:
 
 . `webapp`: Web application microservice calls `greeting` and `name` microservice to generate a greeting for a person.
 . `greeting`: A microservice that returns a greeting.
