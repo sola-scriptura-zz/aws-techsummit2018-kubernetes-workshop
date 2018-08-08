@@ -7,12 +7,12 @@ Several reasons are being observed for such perception. First, the absence of a 
 
 Concerns of enterprise customers are not limited to the operation of container services, but also include network and storage management, configuration management and services for multi-Region deployment, and security. There is a high demand for a one-step guideline or hands-on material that cover all technical matters.
 
-== Pre-Lab0 - Read firsst : Description of the overall hands-on lab structure and objectives
+== Read firsst : Description of the overall hands-on lab structure and objectives
 Hands-on Lab has contained Three phases and Pre Lab. Pre Lab explain full context of Hands-on lab with advance preparation as like the content of this article you are already reading.
 
 link:./slide/2018techsummit-k8s-handson-architecture.pptx[Overall Architecture]
 
-== Pre-Lab1 - Structuring a basic environment for operation and management of docker orchestration environment (Cloud9)
+== Pre-Lab0 - Build Structuring a basic environment for operation and management of docker orchestration environment (Cloud9)
 This section walks you through the creating a Kubernetes development environment using https://aws.amazon.com/cloud9/[AWS Cloud9].  This will provide you with a cloud-based integrated development environment (IDE) that will let you write, run, and debug containerized workloads using just a web browser.
 
 == Create AWS Cloud9 Environment
@@ -95,48 +95,502 @@ You are now ready to continue on with the workshop!
 
 The next step is link:./Phase1[Technical Fundamental Hardning - Build and Deploy Container as MSA].
 
+== Pre-Lab1 - 
+This repo contains a simple application that consists of three microservices. The sample application uses three services:
 
-== Workshop Cleanup
+. `webapp`: Web application microservice calls `greeting` and `name` microservice to generate a greeting for a person.
+. `greeting`: A microservice that returns a greeting.
+. `name`: A microservice that returns a person’s name based upon `{id}` in the URL.
 
-Once you have finished with the workshop, please don't forget to spin down your cluster or you will incur additional charges.
-(We will also remind you at the end!)
+Each application is deployed using different AWS Compute options.
 
-Ensure that you have deleted all services, etc from the `default` namespace before proceeding.
+== Lab1 Build your Docker image for MSA
+개발 단계에서 어플리케이션을 설계하고 도커라이징 할 때 고려해 할 사항
 
-=== Using EKS
+=== Cloud9 의 자바 환경 구성 및 Maven 설치
+This sample enables you to run some Java code in an AWS Cloud9 development environment.
 
-==== Delete EKS worker nodes
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as Amazon EC2 and Amazon S3.
 
-Go to CloudFormation console, right click template with name 'k8s-workshop-worker-nodes' and select 'Delete Stack'
+==== Step1: Install Required Tools
+In this step, you install a set of Java development tools in your AWS Cloud9 development environment. If you already have a set of Java development tools such as the Oracle JDK or OpenJDK installed in your environment, you can skip ahead to Step 2: Add Code. This sample was developed with OpenJDK 8, which you can install in your environment by completing the following procedure.
 
-==== Delete EKS cluster
+1. Confirm whether OpenJDK 8 is already installed. To do this, in a terminal session in the AWS Cloud9 IDE, run the command line version of the Java runner with the -version option. (To start a new terminal session, on the menu bar, choose Window, New Terminal.)
 
-In your Cloud9 IDE, check if there are any running EKS clusters
+  $ java -version
 
-   $ aws eks list-clusters
+Based on the output of the preceding command, do one of the following:
 
-Delete EKS cluster
+* If the output states that the java command isn't found, continue with step 2 in this procedure to install OpenJDK 8.
+* If the output contains values starting with Java(TM), Java Runtime Environment, Java SE, J2SE, or Java2, the OpenJDK isn't installed or isn't set as the default Java development toolset. Continue with step 2 in this procedure to install OpenJDK 8, and then switch to using OpenJDK 8.
+* If the output contains values starting with java version 1.8 and OpenJDK, skip ahead to Step 2: Add Code. OpenJDK 8 is installed correctly for this sample.
+* If the output contains a java version less than 1.8 and values starting with OpenJDK, continue with step 2 in this procedure to upgrade the installed OpenJDK version to OpenJDK 8.
 
-   $ aws eks delete-cluster --name k8s-workshop
+2. Ensure the latest security updates and bug fixes are installed. To do this, run the yum tool with the update command.
 
-Wait until all resources are deleted by kops
+  $ sudo yum -y update
 
-=== Using kops
+3. Install OpenJDK 8. To do this, run the yum tool with the install command, specifying the OpenJDK 8 package.
 
-==== Delete Kubernetes cluster resources
+  $ sudo yum -y install java-1.8.0-openjdk-devel
 
-In your Cloud9 IDE, check if there are any running kubernetes cluster
+4. Switch or upgrade the default Java development toolset to OpenJDK 8. To do this, run the update-alternatives command with the --config option. Run this command twice to switch or upgrade the command line versions of the Java runner and compiler.
 
-   $ kops get cluster
+  $ sudo update-alternatives --config java
+  $ sudo update-alternatives --config javac
 
-Delete kubernetes cluster
+At each prompt, type the selection number for OpenJDK 8 (the one that contains java-1.8).
 
-   $ kops delete cluster example.cluster.k8s.local --yes
+5. Confirm that the command line versions of the Java runner and compiler are using OpenJDK 8. To do this, run the command line versions of the Java runner and compiler with the -version option.
 
-Wait until all resources are deleted by kops
+  $ java -version
+  $ javac -version
 
-=== Delete Cloud9 Envionment
+If OpenJDK 8 is installed and set correctly, the Java runner version output contains a value starting with openjdk version 1.8, and the Java compiler version output starts with the value javac 1.8.
 
-Go to CloudFormation console, right click template with name 'k8s-workshop' and select 'Delete Stack'
+==== Step 2: Set Up to Use the AWS SDK for Java
+You can enhance this sample to use the AWS SDK for Java to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created.
 
-This should delete all the resources associated with this workshop
+In this step, you install Apache Maven or Gradle in your environment. Maven and Gradle are common build automation systems that can be used with Java projects. After you install Maven or Gradle, you use it to generate a new Java project. In this new project, you add a reference to the AWS SDK for Java. This AWS SDK for Java provides a convenient way to interact with AWS services such as Amazon S3, from your Java code.
+
+===== Set Up with Maven 
+1. Install Maven in your environment. To see whether Maven is already installed, using the terminal in the AWS Cloud9 IDE, run Maven with the -version option.
+
+  $ mvn -version
+
+If successful, the output contains the Maven version number. If Maven is already installed, skip ahead to step 4 in this procedure to use Maven to generate a new Java project in your environment.
+
+2. Install Maven by using the terminal to run the following commands. These commands get information about the package repository where Maven is stored, and then use this information to install Maven.
+
+  $ sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+  $ sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+  $ sudo yum install -y apache-maven
+
+3. Confirm the installation by running Maven with the -version option.
+
+  $ mvn -version
+
+=== Build and Test Services using Maven
+
+. Each microservice is in a different repo:
++
+[cols="1,3"]
+|====
+| `greeting` | https://github.com/arun-gupta/microservices-greeting
+| `name` | https://github.com/arun-gupta/microservices-name
+| `webapp` | https://github.com/arun-gupta/microservices-webapp
+|====
++
+. Clone all the repos. Open each one in a separate terminal.
+. Run `greeting` service: `mvn wildfly-swarm:run`
+.. Optionally test: `curl http://localhost:8081/resources/greeting`
+. Run `name` service: `mvn wildfly-swarm:run`
+.. Optionally test:
+... `curl http://localhost:8082/resources/names`
+... `curl http://localhost:8082/resources/names/1`
+. Run `webapp` service: `mvn wildfly-swarm:run`
+. Run the application: `curl http://localhost:8080/`
+
+=== Create Docker Images
+
+`mvn package -Pdocker` for each repo will create the Docker image.
+
+By default, the Docker image name is `arungupta/<service>` where `<service>` is `greeting`, `name` or `webapp`. The image can be created in your repo:
+
+  mvn package -Pdocker -Ddocker.repo=<repo>
+
+By default, the `latest` tag is used for the image. A different tag may be specified as:
+
+  mvn package -Pdocker -Ddocker.tag=<tag>
+
+=== Running Docker container from local repository
+
+  $ Docker run -d -p 8081:8081 arungupta/greeting
+  $ curl http://localhost:8081/resources/greeting
+
+=== Push Docker Images to Registry
+
+IAM Role 에 EC2ContainerRepository 권한 부여 
+
+
+ECS 에 Docker 를 배포하기 위하여 ECR 레포지토리를 생성 
+
+  $ aws ecr create-repository --repository-name yjeong-greeting
+
+Docker 이미지를 ECR 에 푸싱 하기 위하여 태깅
+
+  $ Docker tag 
+
+Push Docker images to the registry:
+
+  mvn install -Pdocker
+
+==== Debug
+
+. List stack:
+
+  docker stack ls
+
+. List services in the stack:
+
+  docker stack services myapp
+
+. List containers:
+
+  docker container ls -f name=myapp*
+
+. Get logs for all the containers in the `webapp` service:
+
+  docker service logs myapp_webapp-service
+
+== Lab2 ECS 에 배포 하기 
+
+클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계, fargate cli 설치 
+
+=== Deployment: Create Cluster using AWS Console
+
+This section will explain how to create an ECS cluster using AWS Console.
+
+Complete instructions are available at https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create_cluster.html.
+
+Use the cluster name `fargate-cluster`.
+
+=== Deployment: Create Cluster using AWS CloudFormation
+
+This section will explain how to create an ECS cluster using CloudFormation.
+
+The following resources are needed in order to deploy the sample application:
+
+- Private Application Load Balancer for `greeting` and `name` and a public ALB for `webapp`
+- Target groups registered with the ALB
+- Security Group that allows the services to talk to each other and be externally accessible
+
+. Create an ECS cluster with these resources:
+
+  cd apps/ecs/fargate/templates
+  aws cloudformation deploy \
+    --stack-name fargate-cluster \
+    --template-file infrastructure.yaml \
+    --region us-east-1 \
+    --capabilities CAPABILITY_IAM
+
+. View the output from the cluster:
+
+  aws cloudformation \
+    describe-stacks \
+    --region us-east-1 \
+    --stack-name fargate-cluster \
+    --query 'Stacks[].Outputs[]' \
+    --output text
+
+==== Deployment: Simple ECS Cluster
+
+This section explains how to create a ECS cluster with no additional resources. The cluster can be created with a private VPC or a public VPC. The CloudFormation templates for different types are available at https://github.com/awslabs/aws-cloudformation-templates/tree/master/aws/services/ECS/EC2LaunchType/clusters.
+
+This section will create a 3-instance cluster using a public VPC:
+
+  curl -O https://raw.githubusercontent.com/awslabs/aws-cloudformation-templates/master/aws/services/ECS/EC2LaunchType/clusters/public-vpc.yml
+  aws cloudformation deploy \
+    --stack-name MyECSCluster \
+    --template-file public-vpc.yml \
+    --region us-east-1 \
+    --capabilities CAPABILITY_IAM
+
+List the cluster using `aws ecs list-clusters` command:
+
+  {
+      "clusterArns": [
+          "arn:aws:ecs:us-east-1:091144949931:cluster/MyECSCluster-ECSCluster-197YNE1ZHPSOP"
+      ]
+  }
+
+=== Deployment: Create Cluster and Deploy Services using Fargate CLI
+
+This section explains how to create a Fargate cluster and run services on it.
+
+. Download CLI from http://somanymachines.com/fargate/
+. Create the LoadBalancer:
+
+  fargate lb create \
+    microservices-lb \
+    --port 80
+
+. Create `greeting` service:
+
+  fargate service create greeting-service \
+    --lb microservices-lb \
+    -m 1024 \
+    -i <ECR Docker Image URI>\
+    -p http:8081 \
+    --rule path=/resources/greeting
+
+. Create `name` service:
+
+  fargate service create name-service \
+    --lb microservices-lb \
+    -m 1024 \
+    -i <ECR Docker Image URI>\
+    -p http:8082 \
+    --rule path=/resources/names/*
+
+. Get URL of the LoadBalancer:
+
+  fargate lb info microservices-lb
+
+. Create `webapp` service:
+
+  fargate service create webapp-service \
+    --lb microservices-lb \
+    -m 1024 \
+    -i <ECR Docker Image URI> \
+    -p http:8080 \
+    -e GREETING_SERVICE_HOST=<lb> \
+    -e GREETING_SERVICE_PORT=80 \
+    -e GREETING_SERVICE_PATH=/resources/greeting \
+    -e NAME_SERVICE_HOST=<lb> \
+    -e NAME_SERVICE_PORT=80 \
+    -e NAME_SERVICE_PATH=/resources/names
+
+. Test the application:
+
+  curl http://<lb>
+  curl http://<lb>/0
+
+. Scale the service: `fargate service scale webapp-service +3`
+. Clean up the resources:
+
+  fargate service scale greeting-service 0
+  fargate service scale name-service 0
+  fargate service scale webapp-service 0
+  fargate lb destroy microservices-lb
+
+NOTE: As described at https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_limits.html, the number of tasks using the Fargate launch type, per region, per account is 20. This limit can be increased by filing a support ticket from the AWS Console.
+
+=== Deployment: Deploy Tasks and Service using ECS CLI
+
+This section will explain how to create an ECS cluster using a CloudFormation template. The tasks are then deployed using ECS CLI and Docker Compose definitions.
+
+==== Pre-requisites
+
+. Install https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html[ECS CLI].
+. Install - https://www.perl.org/get.html[Perl].
+
+==== Deploy the application
+
+. Run the CloudFormation template to create the AWS resources:
++
+|===
+|Region | Launch Template
+| *N. Virginia* (us-east-1)
+a| image::./images/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
+|===
++
+. Run the follow command to capture the output from the CloudFormation template as key/value pairs in the file `ecs-cluster.props`. These will be used to setup environment variables which are used subseqently.
+
+    aws cloudformation describe-stacks \
+      --stack-name aws-microservices-deploy-options-ecscli \
+      --query 'Stacks[0].Outputs' \
+      --output=text | \
+      perl -lpe 's/\s+/=/g' | \
+      tee ecs-cluster.props
+
+. Setup the environment variables using this file:
+
+    set -o allexport
+    source ecs-cluster.props
+    set +o allexport
+
+. Configure ECS CLI:
+
+    ecs-cli configure --cluster $ECSCluster --region us-east-1 --default-launch-type FARGATE
+
+. Create the task definition parameters for each of the service:
+
+    ecs-params-create.sh greeting
+    ecs-params-create.sh name
+    ecs-params-create.sh webapp
+
+. Start the `greeting` service up:
+
+    ecs-cli compose --verbose \
+      --file greeting-docker-compose.yaml \
+      --task-role-arn $ECSRole \
+      --ecs-params ecs-params_greeting.yaml \
+      --project-name greeting \
+      service up \
+      --target-group-arn $GreetingTargetGroupArn \
+      --container-name greeting-service \
+      --container-port 8081
+
+. Bring the `name` service up:
+
+    ecs-cli compose --verbose \
+      --file name-docker-compose.yaml \
+      --task-role-arn $ECSRole \
+      --ecs-params ecs-params_name.yaml  \
+      --project-name name \
+      service up \
+      --target-group-arn $NameTargetGroupArn \
+      --container-name name-service \
+      --container-port 8082
+
+. Bring the webapp service up:
++
+    ecs-cli compose --verbose \
+      --file webapp-docker-compose.yaml \
+      --task-role-arn $ECSRole \
+      --ecs-params ecs-params_webapp.yaml \
+      --project-name webapp \
+      service up \
+      --target-group-arn $WebappTargetGroupArn \
+      --container-name webapp-service \
+      --container-port 8080
++
+Docker Compose supports environment variable substitution. The `webapp-docker-compose.yaml` uses `$PrivateALBCName`  to refer to the private Application Load Balancer for `greeting` and `name` service.
++
+. Check the `healthy` status of different services:
+
+    aws elbv2 describe-target-health \
+      --target-group-arn $GreetingTargetGroupArn \
+      --query 'TargetHealthDescriptions[0].TargetHealth.State' \
+      --output text
+    aws elbv2 describe-target-health \
+      --target-group-arn $NameTargetGroupArn \
+      --query 'TargetHealthDescriptions[0].TargetHealth.State' \
+      --output text
+    aws elbv2 describe-target-health \
+      --target-group-arn $WebappTargetGroupArn \
+      --query 'TargetHealthDescriptions[0].TargetHealth.State' \
+      --output text
+
+. Once all the services are in `healthy` state, get a response from the `webapp` service:
+
+  curl http://"$ALBPublicCNAME"
+  Hello Sheldon
+
+==== Tear down the resources
+
+  ecs-cli compose --verbose \
+        --file greeting-docker-compose.yaml \
+        --task-role-arn $ECSRole \
+        --ecs-params ecs-params_greeting.yaml \
+        --project-name greeting \
+        service down
+  ecs-cli compose --verbose \
+        --file name-docker-compose.yaml \
+        --task-role-arn $ECSRole \
+        --ecs-params ecs-params_name.yaml \
+        --project-name name \
+        service down
+  ecs-cli compose --verbose \
+        --file webapp-docker-compose.yaml \
+        --task-role-arn $ECSRole \
+        --ecs-params ecs-params_webapp.yaml \
+        --project-name webapp \
+        service down
+  aws cloudformation delete-stack --region us-east-1 --stack-name aws-microservices-deploy-options-ecscli
+
+=== Deployment: Create Cluster and Deploy Fargate Tasks using CloudFormation
+
+This section creates an ECS cluster and deploys Fargate tasks to the cluster:
+
+|===
+|Region | Launch Template
+| *N. Virginia* (us-east-1)
+a| image::./images/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-fargate&templateURL=https://s3.amazonaws.com/compute-options-public/master.yaml]
+|===
+
+Retrieve the public endpoint to test your application deployment:
+
+  aws cloudformation \
+    describe-stacks \
+    --region us-east-1 \
+    --stack-name aws-compute-options-fargate \
+    --query 'Stacks[].Outputs[?OutputKey==`PublicALBCNAME`].[OutputValue]' \
+    --output text
+
+Use the command to test:
+
+  curl http://<public_endpoint>
+
+=== Deployment: Create Cluster and Deploy EC2 Tasks using CloudFormation
+
+This section creates an ECS cluster and deploys EC2 tasks to the cluster:
+
+|===
+|Region | Launch Template
+| *N. Virginia* (us-east-1)
+a| image::./images/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-ecs&templateURL=https://s3.amazonaws.com/aws-compute-options-bucket/master.yaml]
+|===
+
+Retrieve the public endpoint to test your application deployment:
+
+  aws cloudformation \
+    describe-stacks \
+    --region us-east-1 \
+    --stack-name aws-compute-options-ecs \
+    --query 'Stacks[].Outputs[?OutputKey==`PublicALBCNAME`].[OutputValue]' \
+    --output text
+
+Use the command to test:
+
+  curl http://<public_endpoint>
+
+=== Deployment Pipeline: Fargate with AWS CodePipeline
+
+This section will explain how to deploy a Fargate task via CodePipeline
+
+. Fork each of the repositories in the link:#build-and-test-services-using-maven[Build and Test Services using Maven] section.
+. Clone the forked repositories to your local machine:
+
+  git clone https://github.com/<your_github_username>/microservice-greeting
+  git clone https://github.com/<your_github_username>/microservice-name
+  git clone https://github.com/<your_github_username>/microservice-webapp
+
+. Create the CloudFormation stack:
++
+|===
+|Region | Launch Template
+| *N. Virginia* (us-east-1)
+a| image::./images/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=Fargate-ContinuousDeployment&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options-ecs-deployment/ecs-refarch-continuous-deployment.yaml&param_LaunchType=Fargate]
+|===
+
+The CloudFormation template requires the following input parameters:
+
+. Cluster Configuration
+.. *Launch Type:* Select Fargate.
+. GitHub Configuration
+.. *Repo:* The repository name for each of the sample services. These have been populated for you.
+.. *Branch:* The branch of the repository to deploy continuously, e.g. master.
+.. *User:* Your GitHub username.
+.. *Personal Access Token:* A token for the user specified above. Use https://github.com/settings/tokens to create a new token. See https://help.github.com/enterprise/2.12/user/articles/creating-a-personal-access-token-for-the-command-line/[Creating a personal access token for the command line] for more details.
+
+The CloudFormation stack has the following outputs:
+
+. *ServiceUrl:* The URL of the sample service that is being deployed.
+. *PipelineUrl:* A deep link for the pipeline in the AWS Management Console.
+
+Once the stack has been provisioned, *click* the link for the *PipelineUrl*. This will open the CodePipline console.  Clicking on the pipeline will display a diagram that looks like this:
+
+image::./images/fargate-pipeline.png[Fargate Pipeline, 350]
+
+Now that a deployment pipeline has been established for our services, you can modify files in the repositories we cloned earlier and push your changes to GitHub.  This will cause the following actions to occur:
+
+. The latest changes will be pulled from GitHub.
+. A new Docker image will be created and pushed to ECR.
+. A new revision of the task definition will be created using the latest version of the Docker image.
+. The service definition will be updated with the latest version of the task definition.
+. ECS will deploy a new version of the Fargate task.
+
+==== Cleaning up the example resources
+
+To remove all the resources created by the example, do the following:
+
+. Delete the main CloudFromation stack which deletes the sub stacks and resouces.
+. Manually delete the resources which may contain content:
+.. S3 Bucket: ArtifactBucket
+.. ECR Repository: Repository
+
+=== Monitoring: AWS X-Ray
+
+https://github.com/aws-samples/aws-xray-fargate
