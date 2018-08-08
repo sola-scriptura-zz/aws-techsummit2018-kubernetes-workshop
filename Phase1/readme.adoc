@@ -225,6 +225,7 @@ We can create and build the cluster in one step by passing the `--yes` flag.
 A multi-master cluster can be created by using the `--master-count` option and specifying the number of master nodes. An odd value is recommended. By default, the master nodes are spread across the AZs specified using the `--zones` option. Alternatively, you can use the `--master-zones` option to explicitly specify the zones for the master nodes.
 
 The `--zones` option is also used to distribute the worker nodes. The number of workers is specified using the `--node-count` option.
+:w
 
 It will take 5-8 minutes for the cluster to be created. Validate the cluster:
 
@@ -258,3 +259,5 @@ Your cluster example.cluster.k8s.local is ready
 Note that all masters are spread across different AZs.
 
 Your output may differ slightly from the one shown here based up on the type of cluster you created.
+
+Go Next step link:./Phase2[Phase2 - Kubernetes Operation Basic]

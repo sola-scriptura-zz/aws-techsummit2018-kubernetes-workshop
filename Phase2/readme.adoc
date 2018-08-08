@@ -1,4 +1,4 @@
-= Kubernetes Deploy options  
+= Kubernetes Basic Operation
 :toc:
 
 === Deployment: Standalone Manifests
