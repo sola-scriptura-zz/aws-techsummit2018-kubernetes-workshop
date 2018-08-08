@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 This chapter explains how to create a Kubernetes cluster using CloudFormation and Terraform.
 

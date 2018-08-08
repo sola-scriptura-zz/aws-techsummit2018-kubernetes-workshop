@@ -1,14 +1,11 @@
 = Kubernetes Operation 
-:toc:
 :icons:
 :linkattrs:
 :imagesdir: imgs
 
 image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
 
-== Operations Path Index
-
-This path is suitable for operations teams interested in deploying, managing, and scaling clusters with Kubernetes.
+:toc:
 
 == Create a Kubernetes Cluster with EKS
 

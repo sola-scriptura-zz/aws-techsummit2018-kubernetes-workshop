@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 This chapter explores how you can conduct Chaos Engineering against your application running in Kubernetes.
 

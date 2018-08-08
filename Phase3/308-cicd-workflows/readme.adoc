@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 There are many different tools for building CI/CD pipelines with the Kubernetes platform.
 

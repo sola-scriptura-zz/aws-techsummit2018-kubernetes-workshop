@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 == Introduction
 
@@ -324,15 +324,3 @@ Remove all the installed components:
 
 
 You are now ready to continue on with the workshop!
-
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="2", grid="none", frame="none"]
-|=====
-|image:button-continue-standard.png[link=../../02-path-working-with-clusters/202-service-mesh]
-|image:button-continue-operations.png[link=../../02-path-working-with-clusters/202-service-mesh]
-|link:../../standard-path.adoc[Go to Standard Index]
-|link:../../operations-path.adoc[Go to Operations Index]
-|=====

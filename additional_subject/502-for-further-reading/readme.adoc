@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 Congratulations! You have completed the Kubernetes the AWSome Way! workshop.
 We hope you have enjoyed learning more about Kubernetes on AWS.

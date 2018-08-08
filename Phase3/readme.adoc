@@ -5,10 +5,6 @@
 
 image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
 
-== Operations Path Index
-
-This path is suitable for operations teams interested in deploying, managing, and scaling clusters with Kubernetes.
-
 :frame: none
 :grid: none
 :valign: top
@@ -17,12 +13,6 @@ This path is suitable for operations teams interested in deploying, managing, an
 [cols="1*^",grid="cols",options="header"]
 |=====
 |anchor:ops[Operations Path]Operations Path
-|link:02-path-working-with-clusters/201-cluster-monitoring[201: Monitoring a Kubernetes Cluster]
-|link:02-path-working-with-clusters/202-service-mesh[202: Leveraging a Service Mesh]
-|link:02-path-working-with-clusters/203-cluster-upgrades[203: Upgrading a Kubernetes Cluster]
-|link:02-path-working-with-clusters/204-cluster-logging-with-EFK[204: Logging with an EFK Stack]
-|link:02-path-working-with-clusters/205-cluster-autoscaling[205: Autoscaling a Kubernetes Cluster]
-|link:02-path-working-with-clusters/206-cloudformation-and-terraform[206: Deploy Kubernetes with Terraform and CloudFormation]
 |link:03-path-application-development/301-local-development[301: Setting up a Local Development Environment]
 |link:03-path-application-development/302-app-discovery[302: Service Discovery for Microservices]
 |link:03-path-application-development/303-app-update[303: Updating Applications on Kubernetes]

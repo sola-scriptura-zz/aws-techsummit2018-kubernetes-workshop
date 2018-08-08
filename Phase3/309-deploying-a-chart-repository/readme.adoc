@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: ../../resources/images
+:imagesdir: imgs
 
 You learned about using `helm` in the module
 link:../../03-path-application-development/306-app-management-with-helm/readme.adoc[306
