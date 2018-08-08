@@ -588,4 +588,4 @@ To remove all the resources created by the example, do the following:
 .. S3 Bucket: ArtifactBucket
 .. ECR Repository: Repository
 
-Now you are ready for the start the labs. Go next Phase1 link:./Phase1 - k8s cluster setup/readme.adoc[Go Phase1]
+Now you are ready for the start the labs. Go next Phase1 link:"./Phase1 - k8s cluster setup/readme.adoc"[Go Phase1]
