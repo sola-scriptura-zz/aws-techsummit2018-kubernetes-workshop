@@ -1,7 +1,7 @@
 = Pre-Lab - Technical Fundamental Hardning - 
 :icons:
 :linkattrs:
-:imagesdir: ./imgs
+:imagesdir: ../imgs
 
 image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
 
