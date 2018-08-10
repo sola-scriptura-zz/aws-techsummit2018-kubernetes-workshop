@@ -41,7 +41,7 @@ Please choose the region closest to you.  If you choose a region for Cloud9 that
 |Region | Launch template with a new VPC | Launch template with an existing VPC
 | *N. Virginia* (us-east-1)
 a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-vpc.template]
-a| image::./imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-novpc.template]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-novpc.template]
 
 | *Oregon* (us-west-2)
 a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/aws-kubernetes-artifacts/v0.5/lab-ide-vpc.template]

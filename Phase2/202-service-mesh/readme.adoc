@@ -32,10 +32,6 @@ In this exercise we'll look at a few of the features linkerd provides, such as:
 . Monitoring the traffic within the service mesh
 . Per request routing
 
-=== Create a Kubernetes cluster
-
-In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, use the link:../../01-path-basics/102-your-first-cluster#create-a-kubernetes-cluster-with-eks[AWS CLI] (recommended).  If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
-
 === Install linkerd
 
 Install linkerd using `kubectl`. This will install linkerd as a DaemonSet (i.e., one instance per
@@ -231,10 +227,6 @@ In this exercise we'll look at a few of the features Istio provides, such as:
 . Weighted routing
 . Distributed tracing
 . Mutual TLS authentication
-
-=== Create Kubernetes cluster
-
-In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, use the link:../../01-path-basics/102-your-first-cluster#create-a-kubernetes-cluster-with-eks[AWS CLI] (recommended).  If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
 
 === Install Istio
 
@@ -470,15 +462,3 @@ Some errors may appear in the output when deleting Istio. These are related to I
 
 
 You are now ready to continue on with the workshop!
-
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="2", grid="none", frame="none"]
-|=====
-|image:button-continue-standard.png[link=../../02-path-working-with-clusters/203-cluster-upgrades]
-|image:button-continue-operations.png[link=../../02-path-working-with-clusters/203-cluster-upgrades]
-|link:../../standard-path.adoc[Go to Standard Index]
-|link:../../operations-path.adoc[Go to Operations Index]
-|=====
