@@ -79,9 +79,9 @@ Once your Cloud9 is ready, download the build script and install in your IDE. Th
 
 To install the script, run this command in the "bash" terminal tab of the Cloud9 IDE:
 
-    aws s3 cp s3://aws-kubernetes-artifacts/v0.5/lab-ide-build.sh . && \
-    chmod +x lab-ide-build.sh && \
-    . ./lab-ide-build.sh
+    aws s3 cp s3://yjeong-virg/techsummit-scripts/lab-ide-setup.sh . && \
+    chmod +x lab-ide-setup.sh && \
+    . ./lab-ide-setup.sh
 
 image:cloud9-run-script.png[Running the script in Cloud9 Terminal]
 
