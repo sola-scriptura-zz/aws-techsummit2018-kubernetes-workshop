@@ -1,6 +1,6 @@
 = Kubernetes Cluster Monitoring
 :toc:
-:imagesdir: ../imgs
+:imagesdir: ../../imgs
 
 == Introduction
 
