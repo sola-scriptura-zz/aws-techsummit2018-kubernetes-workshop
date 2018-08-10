@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns[Kube-DNS] is a Kubernetes cluster add-on that is launched as part of the cluster creation. It schedules a DNS Pod and Service on the cluster, and configures the kubelets to tell other pods and containers to use the DNS service IP's to resolve DNS names. This DNS server utilizes the libraries from SkyDNS to serve DNS requests for Kubernetes Pods and Services.
 

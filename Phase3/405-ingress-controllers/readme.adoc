@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 This chapter explains how to apply both Nginx and AWS ALB Ingress Controllers to a Kubernetes cluster.
 These controllers allow you to set rules that control the routing of external traffic to the services in your Kubernetes cluster.

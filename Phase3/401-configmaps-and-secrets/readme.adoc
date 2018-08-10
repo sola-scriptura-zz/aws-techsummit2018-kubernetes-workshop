@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 Separating application code from configuration is one of the factors when building an application using https://12factor.net/[12-factor]. This allows the same application to be deployed across multiple environments, such as dev, test, staging and production. It also allows the application to be more portable.
 

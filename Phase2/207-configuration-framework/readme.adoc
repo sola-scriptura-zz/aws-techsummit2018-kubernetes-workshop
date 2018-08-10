@@ -1,6 +1,8 @@
+= CLI-supported framework for extensible Kubernetes configurations
+:toc:
+:imagesdir: ../../imgs
 
-
-=== Deployment: Ksonnet
+== Ksonnet
 
 Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
 

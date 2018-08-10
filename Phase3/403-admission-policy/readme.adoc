@@ -3,7 +3,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 Doc Writer <tim@styra.com>
 v1.0, 2018-01-17

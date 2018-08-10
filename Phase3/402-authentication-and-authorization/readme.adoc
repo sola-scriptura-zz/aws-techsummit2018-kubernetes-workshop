@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 AWS uses Identity and Access Management (IAM) roles to manage authentication and authorization for AWS Services.  An IAM role is an IAM entity that defines a set of permissions for making AWS service requests. For more information about IAM, please see link:https://aws.amazon.com/iam/details/[here].
 

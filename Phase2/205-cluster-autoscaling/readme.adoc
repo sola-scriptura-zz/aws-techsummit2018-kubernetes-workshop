@@ -1,8 +1,6 @@
 = Kubernetes Cluster Auto-scaling
 :toc:
-:icons:
-:linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 This tutorial will walk you through how to setup cluster scaling using `cluster-autoscaler` to enable worker node autoscaling based on multiple metrics within Kubernetes.
 
 == Prerequisites

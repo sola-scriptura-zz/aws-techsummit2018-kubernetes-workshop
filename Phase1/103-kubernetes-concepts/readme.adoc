@@ -2,7 +2,7 @@
 :toc:
 :icons:
 :linkattrs:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 == Introduction
 

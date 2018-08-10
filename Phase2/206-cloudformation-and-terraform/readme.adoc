@@ -1,8 +1,6 @@
 = Create Kubernetes cluster using CloudFormation and Terraform
 :toc:
-:icons:
-:linkcss:
-:imagesdir: imgs
+:imagesdir: ../../imgs
 
 This chapter explains how to create a Kubernetes cluster using CloudFormation and Terraform.
 
