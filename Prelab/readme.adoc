@@ -13,7 +13,9 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 [cols="1*^",grid="cols",options="header"]
 |=====
 |anchor:k8s-Prelab[Technical Fundamental Hardning]Technical Fundamental Hardning
-|link:./001-java-environment[001: Java environemtn ]
+|link:./000-java-environment[000: Java environment setup with Maven ]
+|link:./001-docker-image[001: Docker Image build and push to ECR]
+|link:./002-deploy-options-ecs[002: Deploy options ECS]
 |=====
 
 Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject.
