@@ -16,7 +16,7 @@ Hands-on Lab has contained Three phases and Pre Lab. Pre Lab explain full contex
 
 link:./slide/2018techsummit-k8s-handson-architecture.pptx[Overall Architecture]
 
-== Pre-Lab0 - Build basic environment for operation 
+== Prelab - Build basic environment for operation 
 This section walks you through the creating a Kubernetes development environment using https://aws.amazon.com/cloud9/[AWS Cloud9].  This will provide you with a cloud-based integrated development environment (IDE) that will let you write, run, and debug containerized workloads using just a web browser.
 
 === Create AWS Cloud9 Environment
