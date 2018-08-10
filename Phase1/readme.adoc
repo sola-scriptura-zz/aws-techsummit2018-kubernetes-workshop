@@ -201,6 +201,11 @@ The master and worker nodes within the cluster can use either DNS or the https:/
 
 To create a cluster using the gossip protocol, simply use a cluster name with a suffix of `.k8s.local`. In the following steps, we will use `example.cluster.k8s.local` as a sample gossip cluster name. You may choose a different name as long as it ends with `.k8s.local`.
 
+(Note) Before running commands below, check if you're having 5 VPCs in us-east-1 region (which is maximum number of VPCs per region) and delete one through deleting CloudFormation Stack if you need (DO NOT DELETE Cloud9 IDE-related CloudFormation, becuase you'll need that).
+Following error will occur if you reach maximum number of VPCs.
+
+    error running task "VPC/example.cluster.k8s.local" (9m59s remaining to succeed): error creating VPC: VpcLimitExceeded: The maximum number of VPCs has been reached.
+
 The command below creates a cluster in a multi-master, multi-node, and multi-az configuration.
 Run it in the "bash" terminal tab at the bottom of the Cloud9 IDE.
 We can create and build the cluster in one step by passing the `--yes` flag.
@@ -215,8 +220,22 @@ We can create and build the cluster in one step by passing the `--yes` flag.
 A multi-master cluster can be created by using the `--master-count` option and specifying the number of master nodes. An odd value is recommended. By default, the master nodes are spread across the AZs specified using the `--zones` option. Alternatively, you can use the `--master-zones` option to explicitly specify the zones for the master nodes.
 
 The `--zones` option is also used to distribute the worker nodes. The number of workers is specified using the `--node-count` option.
-:w
 
+If you receive an KOPS_STATE_STORE error looks like below during EKS cluster creation, you need to export KOPS_STATE_STORE environment variable with appropriate S3 bucket name that was created with CloudFormation Stack which is starting with s3://k8s-workshop-kopsstatestore-xxx. After that, you can run create command again.
+
+    Please use a valid s3 bucket uri when setting --state or KOPS_STATE_STORE env var.
+    A valid value follows the format s3://<bucket>.
+
+Or you can run 'create cluster' command with --state option like below. (*modify s3 bucket name* with your own)
+    
+    $ kops create cluster \
+      --name example.cluster.k8s.local \
+      --master-count 3 \
+      --node-count 5 \
+      --zones $AWS_AVAILABILITY_ZONES \
+      --state s3://k8s-workshop-kopsstatestore-xxxxxxx
+      --yes
+      
 It will take 5-8 minutes for the cluster to be created. Validate the cluster:
 
 ```
@@ -249,5 +268,9 @@ Your cluster example.cluster.k8s.local is ready
 Note that all masters are spread across different AZs.
 
 Your output may differ slightly from the one shown here based up on the type of cluster you created.
+
+If you don't need cluster anymore, you can delete it with following commands.
+
+    $ kops delete cluster --name example.cluster.k8s.local --yes    
 
 link:../Phase2/readme.adoc[Go Next Phase2]
