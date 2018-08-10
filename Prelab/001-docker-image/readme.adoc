@@ -22,8 +22,7 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 
 === Push Docker Images to Registry
 
-IAM Role 에 EC2ContainerRepository 권한 부여 
-
+(Important) Attach AmazonEC2ContainerRegistryFullAccess Policy to k8s-workshop-LabIdeRole-xxx Role through AWS IAM console or using aws-cli. 
 
 Create ECR repository to deploy docker into ECS. 
   $ aws ecr create-repository --repository-name greeting
