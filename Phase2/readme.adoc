@@ -12,7 +12,7 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 
 [cols="1*^",grid="cols",options="header"]
 |=====
-|anchor:[Management and Monitoring]Management and Monitoring
+|anchor:k8s-lab-phase2[Management and Monitoring]Management and Monitoring
 |link:./200-package-manager[200: Kubernetes Package Manager]
 |link:./201-cluster-monitoring[201: Monitoring a Kubernetes Cluster]
 |link:./202-service-mesh[202: Leveraging a Service Mesh]
@@ -23,4 +23,6 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 |link:./207-configuration-framework[207: CLI-supported framework for extensible Kubernetes configuration]
 |=====
 
-Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject link:../Phase3/readme.adoc[Phase3 - Advanced operation for Kubernetes]
+Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject.
+
+link:../Phase3/readme.adoc[Phase3 - Advanced operation for Kubernetes]
