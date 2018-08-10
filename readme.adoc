@@ -95,8 +95,18 @@ All shell commands _(starting with "$")_ throughout the rest of the workshop sho
 
 You are now ready to continue on with the workshop!
 
+:frame: none
+:grid: none
+:valign: top
+:halign: center
 
-== Pre-Lab1 - Technical Fundamental Hardning - Build and Deploy Container as MSA
+[cols="1*^",grid="cols",options="header"]
+|=====
+|anchor:k8s-prelab[Pre-Lab - Technical Fundamental Hardning]Build and Deploy Container as MSA
+|link:./000-package-manager[200: Kubernetes Package Manager]
+|=====
+:toc:
+== Pre-Lab1 - Technical Fundamental Hardning - 
 
 To ensure the docker container deploy operation. Please take this lab. 
 The lab contains a simple application that consists of three microservices. The sample application uses three services:
@@ -594,4 +604,6 @@ To remove all the resources created by the example, do the following:
 .. S3 Bucket: ArtifactBucket
 .. ECR Repository: Repository
 
-Now you are ready for the start the labs. Go next Phase1 link:./Phase1/readme.adoc[Go Phase1 - Kubernetes Operation]
+Now you are ready for the start the labs. Go next Phase1.
+
+link:./Phase1/readme.adoc[Go Phase1 - Kubernetes Operation]
