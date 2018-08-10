@@ -2,7 +2,12 @@
 
 `mvn package -Pdocker` for each repo will create the Docker image.
 
-By default, the Docker image name is `arungupta/<service>` where `<service>` is `greeting`, `name` or `webapp`. The image can be created in your repo:
+By default, the Docker image name is `arungupta/<service>` where `<service>` is `greeting`, `name` or `webapp`. 
+Run this command in each directory which contains clones from github (microservices-greeting, microservices-name, microservices-webapp)
+
+  $ mvn package -Pdocker
+  
+The image can be created in your repo:
 
   mvn package -Pdocker -Ddocker.repo=<repo>
 
@@ -20,27 +25,24 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 IAM Role 에 EC2ContainerRepository 권한 부여 
 
 
-ECS 에 Docker 를 배포하기 위하여 ECR 레포지토리를 생성 
+Create ECR repository to deploy docker into ECS. 
+  $ aws ecr create-repository --repository-name greeting
+  $ aws ecr create-repository --repository-name name
+  $ aws ecr create-repository --repository-name webapp
 
-  $ aws ecr create-repository --repository-name yjeong-greeting
+Tag each docker image to push into ECR.
 
-Docker 이미지를 ECR 에 푸싱 하기 위하여 태깅
+  $ docker tag <image id> <account id>.dkr.ecr.us-east-1.amazonaws.com/greeting
+  $ docker tag <image id> <account id>.dkr.ecr.us-east-1.amazonaws.com/name
+  $ docker tag <image id> <account id>.dkr.ecr.us-east-1.amazonaws.com/webapp
 
-  $ Docker tag 
+Push each docker images to the registry:
 
-Push Docker images to the registry:
-
-  mvn install -Pdocker
+  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/greeting
+  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/name
+  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/webapp
 
 ==== Debug
-
-. List stack:
-
-  docker stack ls
-
-. List services in the stack:
-
-  docker stack services myapp
 
 . List containers:
 
