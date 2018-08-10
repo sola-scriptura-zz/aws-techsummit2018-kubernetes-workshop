@@ -1,0 +1,51 @@
+=== Create Docker Images
+
+`mvn package -Pdocker` for each repo will create the Docker image.
+
+By default, the Docker image name is `arungupta/<service>` where `<service>` is `greeting`, `name` or `webapp`. The image can be created in your repo:
+
+  mvn package -Pdocker -Ddocker.repo=<repo>
+
+By default, the `latest` tag is used for the image. A different tag may be specified as:
+
+  mvn package -Pdocker -Ddocker.tag=<tag>
+
+=== Running Docker container from local repository
+
+  $ Docker run -d -p 8081:8081 arungupta/greeting
+  $ curl http://localhost:8081/resources/greeting
+
+=== Push Docker Images to Registry
+
+IAM Role 에 EC2ContainerRepository 권한 부여 
+
+
+ECS 에 Docker 를 배포하기 위하여 ECR 레포지토리를 생성 
+
+  $ aws ecr create-repository --repository-name yjeong-greeting
+
+Docker 이미지를 ECR 에 푸싱 하기 위하여 태깅
+
+  $ Docker tag 
+
+Push Docker images to the registry:
+
+  mvn install -Pdocker
+
+==== Debug
+
+. List stack:
+
+  docker stack ls
+
+. List services in the stack:
+
+  docker stack services myapp
+
+. List containers:
+
+  docker container ls -f name=myapp*
+
+. Get logs for all the containers in the `webapp` service:
+
+  docker service logs myapp_webapp-service

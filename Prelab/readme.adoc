@@ -1,0 +1,22 @@
+= Pre-Lab - Technical Fundamental Hardning - 
+:icons:
+:linkattrs:
+:imagesdir: ./imgs
+
+image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
+
+:frame: none
+:grid: none
+:valign: top
+:halign: center
+
+[cols="1*^",grid="cols",options="header"]
+|=====
+|anchor:k8s-Prelab[Technical Fundamental Hardning]Technical Fundamental Hardning
+|link:./001-java-environment[001: Java environemtn ]
+|=====
+
+Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject.
+
+link:../Phase1/readme.adoc[Phase1 - Create Kubernetes Cluster]
+
