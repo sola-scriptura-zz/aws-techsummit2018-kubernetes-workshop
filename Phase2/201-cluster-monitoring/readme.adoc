@@ -1,8 +1,6 @@
 = Kubernetes Cluster Monitoring
 :toc:
-:icons:
-:linkcss:
-:imagesdir: imgs
+:imagesdir: ../imgs
 
 == Introduction
 
@@ -15,10 +13,6 @@ This chapter will demonstrate how to monitor a Kubernetes cluster using the foll
 http://prometheus.io/[Prometheus] is an open-source systems monitoring and alerting toolkit. Prometheus collects metrics from monitored targets by scraping metrics from HTTP endpoints on these targets.
 
 Heapster is limited to Kuberenetes container metrics, it is not general use. Heapster can be used as Prometheus scrape target.
-
-== Prerequisites
-
-In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, use the link:../../01-path-basics/102-your-first-cluster#create-a-kubernetes-cluster-with-eks[AWS CLI] (recommended). If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
 
 All configuration files for this chapter are in the link:templates[201-cluster-monitoring/templates] directory.
 
