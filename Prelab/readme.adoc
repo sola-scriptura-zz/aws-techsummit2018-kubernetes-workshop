@@ -21,4 +21,3 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject.
 
 link:../Phase1/readme.adoc[Phase1 - Create Kubernetes Cluster]
-
