@@ -413,8 +413,8 @@ You are now ready to continue on with the workshop!
 
 [align="center", cols="2", grid="none", frame="none"]
 |=====
-|image:button-continue-developer.png[link=../../04-path-security-and-networking/403-admission-policy/]
-|image:button-continue-operations.png[link=../../04-path-security-and-networking/403-admission-policy/]
+|image:button-continue-developer.png[link=../.././403-admission-policy/]
+|image:button-continue-operations.png[link=../.././403-admission-policy/]
 |link:../../developer-path.adoc[Go to Developer Index]
 |link:../../operations-path.adoc[Go to Operations Index]
 |=====

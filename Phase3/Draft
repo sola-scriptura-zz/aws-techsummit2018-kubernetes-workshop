@@ -1,0 +1,32 @@
+=== Deployment: Standalone Manifests
+
+Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
+
+. Apply the manifests: `kubectl apply -f apps/k8s/standalone/manifest.yml`
+. Access the application: `curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')`
+. Delete the application: `kubectl delete -f apps/k8s/standalone/manifest.yml`
+
+=== Deployment: Draft for Local Dev & Test 
+
+https://github.com/aws-samples/aws-microservices-deploy-options/issues/208
+
+. Install Draft:
+
+  brew tap Azure/draft
+  brew install Azure/draft/draft
+
+. Initialize:
+
+  draft init
+
+. Create Draft artifacts to containerize and deploy to k8s:
+
+  draft create
+
+Following issues are identified so far:
+
+. https://github.com/Azure/draft/issues/726
+. https://github.com/Azure/draft/issues/727
+. https://github.com/Azure/draft/issues/728
+. https://github.com/Azure/draft/issues/729
+. https://github.com/Azure/draft/issues/730

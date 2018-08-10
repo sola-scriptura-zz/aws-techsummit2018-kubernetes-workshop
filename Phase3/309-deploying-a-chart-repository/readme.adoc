@@ -5,7 +5,7 @@
 :imagesdir: imgs
 
 You learned about using `helm` in the module
-link:../../03-path-application-development/306-app-management-with-helm/readme.adoc[306
+link:../.././/306-app-management-with-helm/readme.adoc[306
 Application Management with Helm] this module will teach you how to deploy your
 own Chart Repository to your Kubernetes cluster so that you can deploy custom
 applications.
@@ -18,7 +18,7 @@ All configuration files for this chapter are in the `sample` directory. Make
 sure to `cd` into this directory before running any commands.
 
 This chapter expects that you have gone through 
-link:../../03-path-application-development/306-app-management-with-helm/readme.adoc[306
+link:../.././/306-app-management-with-helm/readme.adoc[306
 Application Management with Helm] meaning you should have installed `helm`.
 
 == ChartMuseum
@@ -61,7 +61,7 @@ sample project.
 
     $ cd sample/
     $ helm package .
-    Successfully packaged chart and saved it to: /03-path-application-development/309-deploying-a-chart-repository/sample/sample-1.0.0.tgz
+    Successfully packaged chart and saved it to: /.//309-deploying-a-chart-repository/sample/sample-1.0.0.tgz
 
 Then we can test pushing our first chart to the new repo.
 
@@ -424,6 +424,6 @@ You are now ready to continue on with the workshop!
 
 [align="center", cols="1", grid="none", frame="none"]
 |=====
-|image:button-continue-developer.png[link=../../03-path-application-development/310-chaos-engineering]
+|image:button-continue-developer.png[link=../.././/310-chaos-engineering]
 |link:../../developer-path.adoc[Go to Developer Index]
 |=====

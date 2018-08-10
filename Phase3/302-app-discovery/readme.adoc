@@ -146,8 +146,8 @@ You are now ready to continue on with the workshop!
 
 [align="center", cols="2", grid="none", frame="none"]
 |=====
-|image:button-continue-standard.png[link=../../03-path-application-development/303-app-update]
-|image:button-continue-developer.png[link=../../03-path-application-development/303-app-update]
+|image:button-continue-standard.png[link=../.././/303-app-update]
+|image:button-continue-developer.png[link=../.././/303-app-update]
 |link:../../standard-path.adoc[Go to Standard Index]
 |link:../../developer-path.adoc[Go to Developer Index]
 |=====

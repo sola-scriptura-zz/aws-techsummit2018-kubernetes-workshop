@@ -16,7 +16,7 @@ HPA can automatically scale pods deployed in a replication controller, deploymen
 
 In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, use the link:../../01-path-basics/102-your-first-cluster#create-a-kubernetes-cluster-with-eks[AWS CLI] (recommended). If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
 
-Deploy Heapster using the steps described in the link:../../02-path-working-with-clusters/201-cluster-monitoring#installation[Cluster Monitoring] lab. You can deploy Heapster using the configuration file `cluster-monitoring/heapster/templates/heapster.yaml`:
+Deploy Heapster using the steps described in the link:../../.201-cluster-monitoring#installation[Cluster Monitoring] lab. You can deploy Heapster using the configuration file `cluster-monitoring/heapster/templates/heapster.yaml`:
 
     $ kubectl create -f templates/heapster/heapster.yaml
     serviceaccount "heapster" created
@@ -116,7 +116,7 @@ You are now ready to continue on with the workshop!
 [align="center", cols="2", grid="none", frame="none"]
 |=====
 |image:button-continue-standard.png[link=../../05-path-next-steps/502-for-further-reading]
-|image:button-continue-developer.png[link=../../03-path-application-development/305-app-tracing-with-jaeger-and-x-ray]
+|image:button-continue-developer.png[link=../.././/305-app-tracing-with-jaeger-and-x-ray]
 |link:../../standard-path.adoc[Go to Standard Index]
 |link:../../developer-path.adoc[Go to Developer Index]
 |=====

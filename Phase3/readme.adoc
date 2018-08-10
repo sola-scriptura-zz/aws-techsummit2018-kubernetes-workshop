@@ -12,57 +12,24 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 
 [cols="1*^",grid="cols",options="header"]
 |=====
-|anchor:ops[Operations Path]Operations Path
-|link:03-path-application-development/301-local-development[301: Setting up a Local Development Environment]
-|link:03-path-application-development/302-app-discovery[302: Service Discovery for Microservices]
-|link:03-path-application-development/303-app-update[303: Updating Applications on Kubernetes]
-|link:03-path-application-development/304-app-scaling[304: Scaling Applications on Kubernetes]
-|link:03-path-application-development/305-app-tracing-with-jaeger-and-x-ray[305: Tracing Applications with Jaeger and X-Ray]
-|link:03-path-application-development/306-app-management-with-helm[306: Manage Applications with Helm]
-|link:03-path-application-development/307-statefulsets-and-pvs[307: Store Persistent Data with StatefulSets and PVs]
-|link:03-path-application-development/310-chaos-engineering[310: Applying Chaos Engineering]
-|link:04-path-security-and-networking/401-configmaps-and-secrets[401: ConfigMaps and Secrets]
-|link:04-path-security-and-networking/402-authentication-and-authorization[402: Authentication, Authorization, and Access]
-|link:04-path-security-and-networking/403-admission-policy[403: Admission Control for Kubernetes on AWS]
-|link:04-path-security-and-networking/404-network-policies[404: Network Policies]
-|link:04-path-security-and-networking/405-ingress-controllers[405: Ingress Controllers]
-|link:04-path-security-and-networking/406-coredns[406: CoreDNS]
-|link:05-path-next-steps/501-k8s-best-practices[501: Best Practices]
-|link:05-path-next-steps/502-for-further-reading[502: For Further Reading]
+|anchor:Lab6[Operations Path]Operations Path
+|link:./301-local-development[301: Setting up a Local Development Environment]
+|link:./302-app-discovery[302: Service Discovery for Microservices]
+|link:./303-app-update[303: Updating Applications on Kubernetes]
+|link:./304-app-scaling[304: Scaling Applications on Kubernetes]
+|link:./305-app-tracing-with-jaeger-and-x-ray[305: Tracing Applications with Jaeger and X-Ray]
+|link:./306-app-management-with-helm[306: Manage Applications with Helm]
+|link:./307-statefulsets-and-pvs[307: Store Persistent Data with StatefulSets and PVs]
+|link:./310-chaos-engineering[310: Applying Chaos Engineering]
+|link:./401-configmaps-and-secrets[401: ConfigMaps and Secrets]
+|link:./402-authentication-and-authorization[402: Authentication, Authorization, and Access]
+|link:./403-admission-policy[403: Admission Control for Kubernetes on AWS]
+|link:./404-network-policies[404: Network Policies]
+|link:./405-ingress-controllers[405: Ingress Controllers]
+|link:./406-coredns[406: CoreDNS]
+|link:./501-k8s-best-practices[501: Best Practices]
+|link:./502-for-further-reading[502: For Further Reading]
 |=====
-
-=== Deployment: Standalone Manifests
-
-Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
-
-. Apply the manifests: `kubectl apply -f apps/k8s/standalone/manifest.yml`
-. Access the application: `curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')`
-. Delete the application: `kubectl delete -f apps/k8s/standalone/manifest.yml`
-
-=== Deployment: Draft for Local Dev & Test 
-
-https://github.com/aws-samples/aws-microservices-deploy-options/issues/208
-
-. Install Draft:
-
-  brew tap Azure/draft
-  brew install Azure/draft/draft
-
-. Initialize:
-
-  draft init
-
-. Create Draft artifacts to containerize and deploy to k8s:
-
-  draft create
-
-Following issues are identified so far:
-
-. https://github.com/Azure/draft/issues/726
-. https://github.com/Azure/draft/issues/727
-. https://github.com/Azure/draft/issues/728
-. https://github.com/Azure/draft/issues/729
-. https://github.com/Azure/draft/issues/730
 
 == Workshop Cleanup
 

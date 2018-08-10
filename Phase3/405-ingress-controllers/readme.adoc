@@ -570,8 +570,8 @@ You are now ready to continue on with the workshop!
 
 [align="center", cols="2", grid="none", frame="none"]
 |=====
-|image:button-continue-developer.png[link=../../04-path-security-and-networking/406-coredns/]
-|image:button-continue-operations.png[link=../../04-path-security-and-networking/406-coredns/]
+|image:button-continue-developer.png[link=../.././406-coredns/]
+|image:button-continue-operations.png[link=../.././406-coredns/]
 |link:../../developer-path.adoc[Go to Developer Index]
 |link:../../operations-path.adoc[Go to Operations Index]
 |=====

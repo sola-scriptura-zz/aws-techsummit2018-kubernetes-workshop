@@ -1,0 +1,16 @@
+=== Deployment: Helm
+
+Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster. Also, make sure Helm is installed on that Kubernetes cluster.
+
+. Install the Helm CLI: `brew install kubernetes-helm`
+. Install Helm in Kubernetes cluster: `helm init`
+. Install the Helm chart: `helm install --name myapp apps/k8s/helm/myapp`
+.. By default, the `latest` tag for an image is used. Alternatively, a different tag for the image can be used:
+
+  helm install --name myapp apps/k8s/helm/myapp --set "docker.tag=<tag>"
+
+. Access the application:
+
+  curl http://$(kubectl get svc/myapp-webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+. Delete the Helm chart: `helm delete --purge myapp`

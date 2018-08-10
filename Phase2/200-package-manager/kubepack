@@ -1,0 +1,32 @@
+=== Deployment: Kubepack
+
+This section will explain how to use https://kubepack.com/[Kubepack] to deploy your Kubernetes application.
+
+. Install `kubepack` CLI:
+
+  wget -O pack https://github.com/kubepack/pack/releases/download/0.1.0/pack-darwin-amd64 \
+    && chmod +x pack \
+    && sudo mv pack /usr/local/bin/
+
+. Move to package root directory: `cd apps/k8s/kubepack`
+. Pull dependent packages:
++
+  pack dep -f .
++
+This will generate `manifests/vendor` folder.
++
+. Generate final manifests: Combine the manifests for this package and its dependencies and potential patches into the final manifests:
++
+  pack up -f .
++
+This will create `manifests/output` folder with an installer script and final manifests.
++
+. Install package: `./manifests/output/install.sh`
+. Access the application:
+
+  curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+. Delete the application: `kubectl delete -R -f manifests/output`
+
+
+link:skaffold.md[Deployment with Skaffold]

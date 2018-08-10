@@ -1,0 +1,12 @@
+
+
+=== Deployment: Ksonnet
+
+Make sure `kubectl` CLI is installed and configured for the Kubernetes cluster.
+
+. Install `ksonnet` from `homebrew` tap: `brew install ksonnet/tap/ks`
+. Change into the ksonnet sub directory: `cd apps/k8s/ksonnet/myapp`
+. Add the environment: `ks env add default`
+. Deploy the manifests: `ks apply default`
+. Access the application: `curl http://$(kubectl get svc/webapp -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')`
+. Delete the application: `ks delete default`

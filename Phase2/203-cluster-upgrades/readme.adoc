@@ -296,7 +296,7 @@ You are now ready to continue on with the workshop!
 
 [align="center", cols="2", grid="none", frame="none"]
 |=====
-|image:button-continue-standard.png[link=../../03-path-application-development/302-app-discovery]
+|image:button-continue-standard.png[link=../.././/302-app-discovery]
 |image:button-continue-operations.png[link=../../02-path-working-with-clusters/204-cluster-logging-with-EFK]
 |link:../../standard-path.adoc[Go to Standard Index]
 |link:../../operations-path.adoc[Go to Operations Index]

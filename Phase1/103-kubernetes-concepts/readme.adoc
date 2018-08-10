@@ -1632,9 +1632,9 @@ You are now ready to continue on with the workshop!
 
 [align="center", cols="3", grid="none", frame="none"]
 |=====
-|image:button-continue-standard.png[link=../../02-path-working-with-clusters/201-cluster-monitoring]
-|image:button-continue-developer.png[link=../../03-path-application-development/301-local-development]
-|image:button-continue-operations.png[link=../../02-path-working-with-clusters/201-cluster-monitoring]
+|image:button-continue-standard.png[link=../../.201-cluster-monitoring]
+|image:button-continue-developer.png[link=../.././/301-local-development]
+|image:button-continue-operations.png[link=../../.201-cluster-monitoring]
 |link:../../standard-path.adoc[Go to Standard Index]
 |link:../../developer-path.adoc[Go to Developer Index]
 |link:../../operations-path.adoc[Go to Operations Index]
