@@ -1,6 +1,4 @@
-== Lab2 ECS 에 배포 하기 
-
-클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계, fargate cli 설치 
+== Lab2 Deploy to ECS 
 
 === Deployment: Create Cluster using AWS Console
 
@@ -127,8 +125,8 @@ This section will explain how to create an ECS cluster using a CloudFormation te
 
 ==== Pre-requisites
 
-. Install https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html[ECS CLI].
-. Install - https://www.perl.org/get.html[Perl].
+. Install ECS CLI - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html.
+. Install Perl - https://www.perl.org/get.html. (check if already installed by running command "perl -v")
 
 ==== Deploy the application
 
@@ -137,7 +135,7 @@ This section will explain how to create an ECS cluster using a CloudFormation te
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
+a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
 |===
 +
 . Run the follow command to capture the output from the CloudFormation template as key/value pairs in the file `ecs-cluster.props`. These will be used to setup environment variables which are used subseqently.
@@ -158,6 +156,13 @@ a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/ho
 . Configure ECS CLI:
 
     ecs-cli configure --cluster $ECSCluster --region us-east-1 --default-launch-type FARGATE
+    
+. Create the following 4 files containing 1 shell file, 3 yaml files needed for the next step. Shell file should be given a execute permission using chomod command, of course.(you can found contents in this github directory)
+
+    ecs-params-create.sh
+    greeting-docker-compose.yaml
+    name-docker-compose.yaml
+    webapp-docker-compose.yaml
 
 . Create the task definition parameters for each of the service:
 
@@ -252,7 +257,7 @@ This section creates an ECS cluster and deploys Fargate tasks to the cluster:
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image::deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-fargate&templateURL=https://s3.amazonaws.com/compute-options-public/master.yaml]
+a| image::../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-fargate&templateURL=https://s3.amazonaws.com/compute-options-public/master.yaml]
 |===
 
 Retrieve the public endpoint to test your application deployment:
@@ -275,7 +280,7 @@ This section creates an ECS cluster and deploys EC2 tasks to the cluster:
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-ecs&templateURL=https://s3.amazonaws.com/aws-compute-options-bucket/master.yaml]
+a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-ecs&templateURL=https://s3.amazonaws.com/aws-compute-options-bucket/master.yaml]
 |===
 
 Retrieve the public endpoint to test your application deployment:
@@ -307,7 +312,7 @@ This section will explain how to deploy a Fargate task via CodePipeline
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=Fargate-ContinuousDeployment&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options-ecs-deployment/ecs-refarch-continuous-deployment.yaml&param_LaunchType=Fargate]
+a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=Fargate-ContinuousDeployment&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options-ecs-deployment/ecs-refarch-continuous-deployment.yaml&param_LaunchType=Fargate]
 |===
 
 The CloudFormation template requires the following input parameters:
@@ -327,7 +332,7 @@ The CloudFormation stack has the following outputs:
 
 Once the stack has been provisioned, *click* the link for the *PipelineUrl*. This will open the CodePipline console.  Clicking on the pipeline will display a diagram that looks like this:
 
-image:fargate-pipeline.png[Fargate Pipeline, 350]
+image:../../imgs/fargate-pipeline.png[Fargate Pipeline, 350]
 
 Now that a deployment pipeline has been established for our services, you can modify files in the repositories we cloned earlier and push your changes to GitHub.  This will cause the following actions to occur:
 
