@@ -4,7 +4,6 @@
 :imagesdir: ../imgs
 
 image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
-:toc:
 
 :frame: none
 :grid: none
@@ -13,7 +12,7 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 
 [cols="1*^",grid="cols",options="header"]
 |=====
-|anchor:K8s[Deploy and Development]Deploy and Development
+|anchor:[Management and Monitoring]Management and Monitoring
 |link:./200-package-manager[200: Kubernetes Package Manager]
 |link:./201-cluster-monitoring[201: Monitoring a Kubernetes Cluster]
 |link:./202-service-mesh[202: Leveraging a Service Mesh]
@@ -21,7 +20,7 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 |link:./204-cluster-logging-with-EFK[204: Logging with an EFK Stack]
 |link:./205-cluster-autoscaling[205: Autoscaling a Kubernetes Cluster]
 |link:./206-cloudformation-and-terraform[206: Deploy Kubernetes with Terraform and CloudFormation]
-|link:./207-configuration-framework[207:CLI-supported framework for extensible Kubernetes configuration]
+|link:./207-configuration-framework[207: CLI-supported framework for extensible Kubernetes configuration]
 |=====
 
 Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject link:../Phase3/readme.adoc[Phase3 - Advanced operation for Kubernetes]
