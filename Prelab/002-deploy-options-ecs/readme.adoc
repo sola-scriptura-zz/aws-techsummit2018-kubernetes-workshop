@@ -135,7 +135,7 @@ This section will explain how to create an ECS cluster using a CloudFormation te
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
+a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
 |===
 +
 . Run the follow command to capture the output from the CloudFormation template as key/value pairs in the file `ecs-cluster.props`. These will be used to setup environment variables which are used subseqently.
