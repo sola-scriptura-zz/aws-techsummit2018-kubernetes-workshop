@@ -1,6 +1,4 @@
-== Lab2 ECS 에 배포 하기 
-
-클라우드 네이티브 아키텍처를 위한 Docker File 구조와 서비스, 작업 정의 연관 관계, fargate cli 설치 
+== Lab2 Deploy to ECS 
 
 === Deployment: Create Cluster using AWS Console
 
@@ -127,8 +125,8 @@ This section will explain how to create an ECS cluster using a CloudFormation te
 
 ==== Pre-requisites
 
-. Install https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html[ECS CLI].
-. Install - https://www.perl.org/get.html[Perl].
+. Install ECS CLI - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html.
+. Install Perl - https://www.perl.org/get.html. (check if already installed by running command "perl -v")
 
 ==== Deploy the application
 
