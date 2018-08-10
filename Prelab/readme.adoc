@@ -5,6 +5,8 @@
 
 image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
 
+TIP: This Prelab is an overview for dockerizing and ECS deployment using Cloud9 to help someone who not familiar with Docker Container. If you are already familiar with the docker technology and ECS deployments, you can skip this Lab and just start ahead Phase1.
+
 :frame: none
 :grid: none
 :valign: top
@@ -18,6 +20,6 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 |link:./002-deploy-options-ecs[002: Deploy options ECS]
 |=====
 
-Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject.
+You did all subject of Prelab. Go Next advanced subject.
 
 link:../Phase1/readme.adoc[Phase1 - Create Kubernetes Cluster]
