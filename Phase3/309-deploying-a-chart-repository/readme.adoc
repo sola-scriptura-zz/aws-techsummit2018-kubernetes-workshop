@@ -418,12 +418,10 @@ To cleanup `chartmuseum` and the local chart repos you can just use the cli.
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="1", grid="none", frame="none"]
+[cols="1,1",width="90%"]
 |=====
-|image:button-continue-developer.png[link=../.././/310-chaos-engineering]
-|link:../../developer-path.adoc[Go to Developer Index]
+<|image:go-back.png[alt="go Back",link=../308-cicd-workflows,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../310-chaos-engineering,width=50]
+
+2+^|link:../readme.adoc[Go to Phase2 Index] 
 |=====

@@ -109,14 +109,10 @@ webapp    Deployment/webapp   0% / 10%   1         10        1         17m
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="2", grid="none", frame="none"]
+[cols="1,1",width="90%"]
 |=====
-|image:button-continue-standard.png[link=../../05-path-next-steps/502-for-further-reading]
-|image:button-continue-developer.png[link=../.././/305-app-tracing-with-jaeger-and-x-ray]
-|link:../../standard-path.adoc[Go to Standard Index]
-|link:../../developer-path.adoc[Go to Developer Index]
+<|image:go-back.png[alt="go Back",link=../303-app-update,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../305-app-tracing-with-jaeger-and-x-ray,width=50]
+
+2+^|link:../readme.adoc[Go to Phase3 Index] 
 |=====

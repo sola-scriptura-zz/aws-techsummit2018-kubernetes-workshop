@@ -564,14 +564,10 @@ that you will hit the v1 or the v2 application. Use kubectl annotate to change t
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="2", grid="none", frame="none"]
+[cols="1,1",width="90%"]
 |=====
-|image:button-continue-developer.png[link=../.././406-coredns/]
-|image:button-continue-operations.png[link=../.././406-coredns/]
-|link:../../developer-path.adoc[Go to Developer Index]
-|link:../../operations-path.adoc[Go to Operations Index]
+<|image:go-back.png[alt="go Back",link=../404-network-policies,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../406-coredns,width=50]
+
+2+^|link:../readme.adoc[Go to Phase3 Index] 
 |=====

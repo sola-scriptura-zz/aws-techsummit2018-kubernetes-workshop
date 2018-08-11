@@ -12,12 +12,10 @@ Please explore the sections below for more information:
 
 Once you've looked at the options above, you are ready to continue with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="1", grid="none", frame="none"]
+[cols="1,1",width="90%"]
 |=====
-|image:button-continue-developer.png[link=../.././/309-deploying-a-chart-repository]
-|link:../../developer-path.adoc[Go to Developer Index]
+<|image:go-back.png[alt="go Back",link=../307-statefulsets-and-pvs,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../309-deploying-a-chart-repository,width=50]
+
+2+^|link:../readme.adoc[Go to Phase3 Index] 
 |=====

@@ -29,6 +29,10 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 |link:./406-coredns[406: CoreDNS]
 |=====
 
+Congratulations. You have completed all of Kubernetes Hands On Lab. Then check out the Best Practices and other reading material.
+
+link:../Advanced-topic/readme.adoc[Phase3 - Advanced operation for Kubernetes]
+
 == Workshop Cleanup
 
 Once you have finished with the workshop, please don't forget to spin down your cluster or you will incur additional charges.

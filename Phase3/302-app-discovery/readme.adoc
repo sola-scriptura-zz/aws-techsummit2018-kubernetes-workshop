@@ -6,12 +6,6 @@
 
 This chapter shows an example of how different microservices within an application can use service discovery to locate each other in the infrastructure rather than via hardcoded IP addresses.
 
-== Prerequisites
-
-In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, use the link:../../01-path-basics/102-your-first-cluster#create-a-kubernetes-cluster-with-eks[AWS CLI] (recommended). If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
-
-All configuration files for this chapter are in the `microservices` directory. Make sure you change to that directory before giving any commands in this chapter.
-
 === Application Architecture
 
 The sample application uses three services:
@@ -140,14 +134,10 @@ Delete the application with this command:
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="2", grid="none", frame="none"]
+[cols="1,1",width="90%"]
 |=====
-|image:button-continue-standard.png[link=../.././/303-app-update]
-|image:button-continue-developer.png[link=../.././/303-app-update]
-|link:../../standard-path.adoc[Go to Standard Index]
-|link:../../developer-path.adoc[Go to Developer Index]
+<|image:go-back.png[alt="go Back",link=../301-local-development,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../303-app-update,width=50]
+
+2+^|link:../readme.adoc[Go to Phase2 Index] 
 |=====

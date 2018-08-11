@@ -552,14 +552,10 @@ https://github.com/zalando-incubator/kube-ingress-aws-controller[Kubernetes Ingr
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="2", grid="none", frame="none"]
+[cols="1,1",width="90%"]
 |=====
-|image:button-continue-standard.png[link=../.././/304-app-scaling]
-|image:button-continue-developer.png[link=../.././/304-app-scaling]
-|link:../../standard-path.adoc[Go to Standard Index]
-|link:../../developer-path.adoc[Go to Developer Index]
+<|image:go-back.png[alt="go Back",link=../302-app-discovery,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../304-app-scaling,width=50]
+
+2+^|link:../readme.adoc[Go to Phase2 Index] 
 |=====
