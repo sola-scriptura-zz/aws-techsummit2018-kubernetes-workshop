@@ -73,6 +73,9 @@ All existing pods are killed before the new ones are created. The configuration 
 
     $ kubectl expose deployment/app-recreate --port=80 --target-port=8080 --name=app-recreate --type=LoadBalancer
     service "app-recreate" exposed
++
+Wait for ~3 mins for the load balancer to accept request.
++
 
 . Get service detail:
 
@@ -241,7 +244,9 @@ Once again, `--record` ensures that the command initiating this deployment is re
 
     $ kubectl expose deployment/app-rolling --port=80 --target-port=8080 --name=app-rolling --type=LoadBalancer
     service "app-rolling" exposed
-
++
+Wait for ~3 mins for the load balancer to accept request.
++
 . Get service detail:
 
     $ kubectl describe svc/app-rolling
