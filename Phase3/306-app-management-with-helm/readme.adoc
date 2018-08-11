@@ -22,6 +22,12 @@ This section shows how to install both the client and the server.
 
 === Install Helm client
 
+Install on Linux:
+
+  $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+  $ chmod 700 get_helm.sh
+  $ ./get_helm.sh
+
 Install on Mac OSX:
 
   brew install kubernetes-helm
@@ -38,7 +44,9 @@ Helm server is also known as `tiller`. By default, tiller is installed in the cu
 Install `tiller`:
 
 ```
-$ helm init
+$ kubectl create serviceaccount --namespace kube-system tiller
+$ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+$ helm init --service-account tiller
 Creating /Users/argu/.helm
 Creating /Users/argu/.helm/repository
 Creating /Users/argu/.helm/repository/cache
@@ -194,7 +202,7 @@ sample  1         Tue Oct 17 03:45:36 2017  DEPLOYED  sample-1.0.0  default
 
 Delete the deployed chart
 
-    $ helm delete sample
+    $ helm delete --purge sample
 
 
 You are now ready to continue on with the workshop!
