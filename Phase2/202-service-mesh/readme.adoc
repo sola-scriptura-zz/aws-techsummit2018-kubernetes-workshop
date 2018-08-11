@@ -460,10 +460,11 @@ Some errors may appear in the output when deleting Istio. These are related to I
 
 You are now ready to continue on with the workshop!
 
-[align="center",cols="1,1",grid="none",boder="0"]
+[cols="1,1",width="90%"]
 |=====
 <|image:go-back.png[alt="go Back",link=../201-cluster-upgrades,width=50] Back
+|
 >|Next image:go-next.png[alt="go Next",link=../203-cluster-upgrades,width=50]
 
-2+|link:../readme.adoc[Go to Phase2 Index] 
+2+^|link:../readme.adoc[Go to Phase2 Index] 
 |=====
