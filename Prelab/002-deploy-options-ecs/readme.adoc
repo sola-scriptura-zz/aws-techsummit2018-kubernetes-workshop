@@ -350,3 +350,13 @@ To remove all the resources created by the example, do the following:
 . Manually delete the resources which may contain content:
 .. S3 Bucket: ArtifactBucket
 .. ECR Repository: Repository
+
+You are now ready to continue on with the workshop!
+
+[cols="1,1",width="90%"]
+|=====
+<|image:go-back.png[alt="go Back",link=../001-docker-image,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../../Phase1,width=50]
+
+2+^|link:../readme.adoc[Go to Prelab Index] 
+|=====

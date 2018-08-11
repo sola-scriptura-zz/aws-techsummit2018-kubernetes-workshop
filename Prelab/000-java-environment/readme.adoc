@@ -99,3 +99,13 @@ If successful, the output contains the Maven version number. If Maven is already
 ... `curl http://localhost:8082/resources/names/1`
 . Run `webapp` service: `mvn wildfly-swarm:run`
 . Run the application: `curl http://localhost:8080/`
+
+You are now ready to continue on with the workshop!
+
+[cols="1,1",width="90%"]
+|=====
+<|image:go-back.png[alt="go Back",link=../readme.adoc,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../001-docker-image,width=50]
+
+2+^|link:../readme.adoc[Go to Prelab Index] 
+|=====
