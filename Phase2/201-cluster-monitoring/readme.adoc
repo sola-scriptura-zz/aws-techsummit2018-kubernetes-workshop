@@ -322,7 +322,7 @@ You are now ready to continue on with the workshop!
 :grid: none
 :valign: top
 
-[align="right", cols="1", grid="none", frame="none"]
+[align="center", cols="1", grid="none", frame="none"]
 |=====
 |image:go-next.png[link=../202-service-mesh,width=50]
 |link:../readme.adoc[Go to Phase2 Index]
