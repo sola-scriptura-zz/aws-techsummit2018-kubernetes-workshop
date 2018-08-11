@@ -1,11 +1,6 @@
 = Set up Java and docker build environment on Cloud9
-:icons:
-:linkattrs:
-:imagesdir: ../../imgs
-
-image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
-
 :toc:
+:imagesdir: ../../imgs
 
 To ensure the docker container deploy operation. Please take this lab. 
 The lab contains a simple application that consists of three microservices. The sample application uses three services:

@@ -1,4 +1,6 @@
-=== Create Docker Images
+= Create Docker Images
+:toc:
+:imagesdir: ../../imgs
 
 `mvn package -Pdocker` for each repo will create the Docker image.
 

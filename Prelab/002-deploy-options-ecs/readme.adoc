@@ -1,6 +1,8 @@
-== Lab2 Deploy to ECS 
+= Deploy to ECS 
+:toc:
+:imagesdir: ../../imgs
 
-=== Deployment: Create Cluster using AWS Console
+== Deployment: Create Cluster using AWS Console
 
 This section will explain how to create an ECS cluster using AWS Console.
 
@@ -8,7 +10,7 @@ Complete instructions are available at https://docs.aws.amazon.com/AmazonECS/lat
 
 Use the cluster name `fargate-cluster`.
 
-=== Deployment: Create Cluster using AWS CloudFormation
+== Deployment: Create Cluster using AWS CloudFormation
 
 This section will explain how to create an ECS cluster using CloudFormation.
 
@@ -36,7 +38,7 @@ The following resources are needed in order to deploy the sample application:
     --query 'Stacks[].Outputs[]' \
     --output text
 
-==== Deployment: Simple ECS Cluster
+=== Deployment: Simple ECS Cluster
 
 This section explains how to create a ECS cluster with no additional resources. The cluster can be created with a private VPC or a public VPC. The CloudFormation templates for different types are available at https://github.com/awslabs/aws-cloudformation-templates/tree/master/aws/services/ECS/EC2LaunchType/clusters.
 
