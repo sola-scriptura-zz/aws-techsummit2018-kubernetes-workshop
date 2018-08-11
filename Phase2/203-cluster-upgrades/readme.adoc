@@ -287,3 +287,13 @@ Availability for your application into account. You would setup two k8s cluster,
 version and second with 1.7.2 and migrate your pod deployments and services into new cluster.
 
 You are now ready to continue on with the workshop!
+
+:frame: none
+:grid: none
+:valign: top
+
+[align="center", cols="1", grid="none", frame="none"]
+|=====
+|image:go-next.png[link=../204-cluster-logging-with-EFK]
+|link:../Phase2/readme.adoc[Go to Phase2 Index]
+|=====

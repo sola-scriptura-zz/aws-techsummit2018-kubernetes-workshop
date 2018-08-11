@@ -459,3 +459,13 @@ Some errors may appear in the output when deleting Istio. These are related to I
     kubectl get all --namespace istio-system
 
 You are now ready to continue on with the workshop!
+
+:frame: none
+:grid: none
+:valign: top
+
+[align="center", cols="1", grid="none", frame="none"]
+|=====
+|image:go-next.png[link=../203-cluster-upgrades]
+|link:../Phase2/readme.adoc[Go to Phase2 Index]
+|=====
