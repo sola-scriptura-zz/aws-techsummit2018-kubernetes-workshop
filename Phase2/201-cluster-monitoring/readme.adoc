@@ -324,6 +324,6 @@ You are now ready to continue on with the workshop!
 
 [align="right", cols="1", grid="none", frame="none"]
 |=====
-|image:go-next.png[link=../202-service-mesh,size=50]
+|image:go-next.png[link=../202-service-mesh,width=50]
 |link:../Phase2/readme.adoc[Go to Phase2 Index]
 |=====
