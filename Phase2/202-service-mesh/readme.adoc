@@ -465,5 +465,5 @@ You are now ready to continue on with the workshop!
 |image:go-back.png[alt="go Next",link=../201-cluster-upgrades,width=50] 
 |image:go-next.png[alt="go Next",link=../203-cluster-upgrades,width=50]
 
-2|link:../readme.adoc[Go to Phase2 Index] 
+2+|link:../readme.adoc[Go to Phase2 Index] 
 |=====
