@@ -2,7 +2,7 @@
 :imagesdir: ../imgs
 :toc:
 
-image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
+image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018",align="left",width=420]
 
 == Create a Kubernetes Cluster with EKS
 
