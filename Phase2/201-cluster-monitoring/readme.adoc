@@ -318,12 +318,10 @@ Remove all the installed components:
 
 You are now ready to continue on with the workshop!
 
-:frame: none
-:grid: none
-:valign: top
-
-[align="center", cols="1", grid="none", frame="none"]
+[align="right", cols="2", grid="none", frame="none"]
 |=====
-|image:go-next.png[link=../202-service-mesh,width=50]
-|link:../readme.adoc[Go to Phase2 Index]
+|image:go-back.png[alt="go Back",link=../201-cluster-upgrades,width=50] Back
+|Next image:go-next.png[alt="go Next",link=../202-service-mesh,width=50]
+
+2+|link:../readme.adoc[Go to Phase2 Index] 
 |=====
