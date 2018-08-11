@@ -462,8 +462,12 @@ You are now ready to continue on with the workshop!
 
 [align="right", cols="2", grid="none", frame="none", width="100%"]
 |=====
-|[caption="go Back",link=../201-cluster-upgrades]image:go-back.png[width=50]
-|[caption="go Next",link=../203-cluster-upgrades]image:go-next.png[width=50] 
+|
+[caption="go Back",link=../201-cluster-upgrades]
+image:go-back.png[width=50]
+|
+[caption="go Next",link=../203-cluster-upgrades]
+image:go-next.png[width=50] 
 
 2+|link:../readme.adoc[Go to Phase2 Index] 
 |=====
