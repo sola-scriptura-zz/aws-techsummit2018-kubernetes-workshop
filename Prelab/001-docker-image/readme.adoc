@@ -19,12 +19,15 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 
 === Running Docker container from local repository
 
-  $ Docker run -d -p 8081:8081 arungupta/greeting
+  $ Docker run -d -p 8081:8081 arungupta/greeting (close the previous session open with 8081)
   $ curl http://localhost:8081/resources/greeting
 
 === Push Docker Images to Registry
 
 (Important) Attach AmazonEC2ContainerRegistryFullAccess Policy to k8s-workshop-LabIdeRole-xxx Role through AWS IAM console or using aws-cli. 
+
+Log in to ECR
+  $ aws ecr get-login --no-include-email --region us-west-2 or us-east-1 (copy and paste the output of this commend)
 
 Create ECR repository to deploy docker into ECS. 
   $ aws ecr create-repository --repository-name greeting
@@ -33,15 +36,15 @@ Create ECR repository to deploy docker into ECS.
 
 Tag each docker image to push into ECR.
 
-  $ docker tag <image id> <account id>.dkr.ecr.us-east-1.amazonaws.com/greeting
-  $ docker tag <image id> <account id>.dkr.ecr.us-east-1.amazonaws.com/name
-  $ docker tag <image id> <account id>.dkr.ecr.us-east-1.amazonaws.com/webapp
+  $ docker tag arungupta/greeting:latest <account id>.dkr.ecr.us-east-1.amazonaws.com/greeting:latest
+  $ docker tag arungupta/name:latest <account id>.dkr.ecr.us-east-1.amazonaws.com/name:latest
+  $ docker tag arungupta/webapp:latest <account id>.dkr.ecr.us-east-1.amazonaws.com/webapp:latest
 
 Push each docker images to the registry:
 
-  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/greeting
-  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/name
-  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/webapp
+  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/greeting:latest
+  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/name:latest
+  $ docker push <account id>.dkr.ecr.us-east-1.amazonaws.com/webapp:latest
 
 ==== Debug
 
