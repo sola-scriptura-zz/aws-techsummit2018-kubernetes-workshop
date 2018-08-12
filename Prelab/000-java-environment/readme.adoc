@@ -85,14 +85,14 @@ If successful, the output contains the Maven version number. If Maven is already
 | `webapp` | https://github.com/arun-gupta/microservices-webapp
 |====
 +
-. Clone all the repos. Open each one in a separate terminal.
-. Run `greeting` service: `mvn wildfly-swarm:run`
+. Clone all the repos. Open each one in a separate terminal. (git clone )
+. Run `greeting` service: `mvn wildfly-swarm:run` (run at microservices-greeting directory)
 .. Optionally test: `curl http://localhost:8081/resources/greeting`
-. Run `name` service: `mvn wildfly-swarm:run`
+. Run `name` service: `mvn wildfly-swarm:run` (run at microservices-name directory)
 .. Optionally test:
 ... `curl http://localhost:8082/resources/names`
 ... `curl http://localhost:8082/resources/names/1`
-. Run `webapp` service: `mvn wildfly-swarm:run`
+. Run `webapp` service: `mvn wildfly-swarm:run`(run at microservices-webapp directory)
 . Run the application: `curl http://localhost:8080/`
 
 You are now ready to continue on with the workshop!
