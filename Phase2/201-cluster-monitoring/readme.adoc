@@ -323,5 +323,5 @@ You are now ready to continue on with the workshop!
 <|image:go-back.png[alt="go Back",link=../readme.adoc,width=50] Back
 >|Next image:go-next.png[alt="go Next",link=../202-service-mesh,width=50]
 
-3+^|link:../readme.adoc[Go to Phase2 Index] 
+2+^|link:../readme.adoc[Go to Phase2 Index] 
 |=====

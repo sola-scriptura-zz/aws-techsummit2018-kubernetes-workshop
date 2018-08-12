@@ -91,4 +91,6 @@ At this point you can restart the Cloud9 IDE terminal session to ensure that the
 [NOTE]
 All shell commands _(starting with "$")_ throughout the rest of the workshop should be run in this tab. You may want to resize it upwards to make it larger.
 
-You are now ready to continue on with the workshop! Go for Pre-Lab to ensure the container fundermantal technical stack. Let's start Prelab image:go-next.png[alt="go Next",link=./Prelab/readme.adoc,width=50]
+You are now ready to continue on with the workshop! Go for Pre-Lab to ensure the container fundermantal technical stack. 
+
+Let's start Prelab image:go-next.png[alt="go Next",link=./Prelab/readme.adoc,width=50]
