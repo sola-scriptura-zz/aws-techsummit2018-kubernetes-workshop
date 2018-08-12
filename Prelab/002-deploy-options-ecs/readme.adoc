@@ -20,7 +20,7 @@ The following resources are needed in order to deploy the sample application:
 - Target groups registered with the ALB
 - Security Group that allows the services to talk to each other and be externally accessible
 
-. Create an ECS cluster with these resources:
+. Create an ECS cluster with these resources(you can download link:./fargate/templates/infrastructure.yaml[infrastructure.yaml] here)
 
   cd apps/ecs/fargate/templates
   aws cloudformation deploy \
@@ -137,7 +137,7 @@ This section will explain how to create an ECS cluster using a CloudFormation te
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-microservices-deploy-options-ecscli&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options/infra.yaml]
 |===
 +
 . Run the follow command to capture the output from the CloudFormation template as key/value pairs in the file `ecs-cluster.props`. These will be used to setup environment variables which are used subseqently.
@@ -259,7 +259,7 @@ This section creates an ECS cluster and deploys Fargate tasks to the cluster:
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image::../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-fargate&templateURL=https://s3.amazonaws.com/compute-options-public/master.yaml]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-fargate&templateURL=https://s3.amazonaws.com/compute-options-public/master.yaml]
 |===
 
 Retrieve the public endpoint to test your application deployment:
@@ -282,7 +282,7 @@ This section creates an ECS cluster and deploys EC2 tasks to the cluster:
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-ecs&templateURL=https://s3.amazonaws.com/aws-compute-options-bucket/master.yaml]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=aws-compute-options-ecs&templateURL=https://s3.amazonaws.com/aws-compute-options-bucket/master.yaml]
 |===
 
 Retrieve the public endpoint to test your application deployment:
@@ -314,7 +314,7 @@ This section will explain how to deploy a Fargate task via CodePipeline
 |===
 |Region | Launch Template
 | *N. Virginia* (us-east-1)
-a| image:../../imgs/deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=Fargate-ContinuousDeployment&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options-ecs-deployment/ecs-refarch-continuous-deployment.yaml&param_LaunchType=Fargate]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=Fargate-ContinuousDeployment&templateURL=https://s3.amazonaws.com/aws-microservices-deploy-options-ecs-deployment/ecs-refarch-continuous-deployment.yaml&param_LaunchType=Fargate]
 |===
 
 The CloudFormation template requires the following input parameters:
@@ -334,7 +334,7 @@ The CloudFormation stack has the following outputs:
 
 Once the stack has been provisioned, *click* the link for the *PipelineUrl*. This will open the CodePipline console.  Clicking on the pipeline will display a diagram that looks like this:
 
-image:../../imgs/fargate-pipeline.png[Fargate Pipeline, 350]
+image:fargate-pipeline.png[Fargate Pipeline, 350]
 
 Now that a deployment pipeline has been established for our services, you can modify files in the repositories we cloned earlier and push your changes to GitHub.  This will cause the following actions to occur:
 
