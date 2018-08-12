@@ -31,7 +31,7 @@ image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018
 
 Congratulations. You have completed all of Kubernetes Hands On Lab. Then check out the Best Practices and other reading material.
 
-link:../Advanced-topic/readme.adoc[Phase3 - Advanced operation for Kubernetes]
+link:../Advanced-topic/readme.adoc[Advanced-topic]
 
 == Workshop Cleanup
 
