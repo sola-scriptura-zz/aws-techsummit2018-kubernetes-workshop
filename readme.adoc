@@ -42,8 +42,8 @@ a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/ho
 a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/cf-templates-oy23hu24c01u-us-east-1/lab-ide-novpc.template-instance-seletable]
 
 | *Oregon* (us-west-2)
-a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/cf-templates-oy23hu24c01u-us-west-2/lab-ide-vpc.template-instance-seletable]
-a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/cf-templates-oy23hu24c01u-us-west-2/lab-ide-novpc.template-instance-seletable]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-wast-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/cf-templates-oy23hu24c01u-us-east-1/lab-ide-vpc.template-instance-seletable]
+a| image:deploy-to-aws.png[link=https://console.aws.amazon.com/cloudformation/home?region=us-wast-2#/stacks/new?stackName=k8s-workshop&templateURL=https://s3.amazonaws.com/cf-templates-oy23hu24c01u-us-east-1/lab-ide-novpc.template-instance-seletable]
 
 |===
 
