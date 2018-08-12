@@ -16,7 +16,7 @@ Create a Kubernetes cluster using the following command. Run it in the "bash" te
       --resources-vpc-config subnetIds=${EKS_SUBNET_IDS},securityGroupIds=${EKS_SECURITY_GROUPS} \
       --kubernetes-version 1.10
 
-The `EKS_SERVICE_ROLE`, `EKS_SUBNET_IDS`, and `EKS_SECURITY_GROUPS` environment variables should have been set during the link:../101-start-here[Cloud9 Environment Setup].
+The `EKS_SERVICE_ROLE`, `EKS_SUBNET_IDS`, and `EKS_SECURITY_GROUPS` environment variables should have been set during the cloud9 environment setup script.
 
 Cluster provisioning usually takes less than 10 minutes. You can query the status of your cluster with the following command. When your cluster status is `ACTIVE`, you can proceed.
 
@@ -32,7 +32,7 @@ echo $EKS_SERVICE_ROLE
 echo $EKS_SUBNET_IDS
 echo $EKS_SECURITY_GROUPS
 ```
-If any of those environment variables are blank, please re-run the "Build Script" section of the link:../101-start-here[Cloud9 Environment Setup].
+If any of those environment variables are blank, please re-run the "Build Script" cloud9 environment setup that lab-ide-setup.sh
 
 If you receive an *UnsupportedAvailabilityZoneException* error during EKS cluster creation, your account is using an AZ that is currently resource constrained. This occurs mostly in N.Virginia region (us-east-1).
 
