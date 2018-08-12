@@ -20,7 +20,7 @@ The following resources are needed in order to deploy the sample application:
 - Target groups registered with the ALB
 - Security Group that allows the services to talk to each other and be externally accessible
 
-. Create an ECS cluster with these resources(you can download link:./fargate/templates/infrastructure.yaml[infrastructure.yaml] here)
+. Create an ECS cluster with these resources(you can download here link:./fargate/templates/infrastructure.yaml[infrastructure.yaml])
 
   cd apps/ecs/fargate/templates
   aws cloudformation deploy \
