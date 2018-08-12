@@ -93,4 +93,4 @@ All shell commands _(starting with "$")_ throughout the rest of the workshop sho
 
 You are now ready to continue on with the workshop! Go for Pre-Lab to ensure the container fundermantal technical stack.
 
-link:./Prelab/readme.adoc[Go Prelab - Technical Fundamental Hardning]
+image:go-next.png[alt="go Next",link=./Prelab/readme.adoc,width=50]
