@@ -248,7 +248,7 @@ You should now be able to run the `istioctl` CLI
 Install Istio using `kubectl`. This will install Istio into its own namespace, `istio-system`. Change to the
 directory where you downloaded Istio in the step above.
 
-    kubectl apply -f install/kubernetes/istio.yaml
+    kubectl apply -f install/kubernetes/istio-demo.yaml
 
 Check the Istio has been installed. Note that Istio is installed into its own namespace.
 
