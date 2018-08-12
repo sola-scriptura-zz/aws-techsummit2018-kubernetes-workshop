@@ -18,5 +18,5 @@ Once you've explored link:x-ray[X-Ray] and link:jaeger[Jaeger], you are ready to
 <|image:go-back.png[alt="go Back",link=../304-app-scaling,width=50] Back
 >|Next image:go-next.png[alt="go Next",link=../306-app-management-with-helm,width=50]
 
-2+^|link:../readme.adoc[Go to Phase2 Index] 
+2+^|link:../readme.adoc[Go to Phase3 Index] 
 |=====

@@ -423,5 +423,5 @@ You are now ready to continue on with the workshop!
 <|image:go-back.png[alt="go Back",link=../308-cicd-workflows,width=50] Back
 >|Next image:go-next.png[alt="go Next",link=../310-chaos-engineering,width=50]
 
-2+^|link:../readme.adoc[Go to Phase2 Index] 
+2+^|link:../readme.adoc[Go to Phase3 Index] 
 |=====

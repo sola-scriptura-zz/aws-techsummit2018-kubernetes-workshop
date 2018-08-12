@@ -2,8 +2,6 @@
 :imagesdir: ../imgs
 :toc:
 
-image:TechSummitMacau_white_Logo.png[alt="kubernetes hands-on at Techsummit 2018", align="left",width=420]
-
 == Create a Kubernetes Cluster with EKS
 
 EKS can be used to create a highly available cluster, with multiple master nodes spread across multiple availability zones.
@@ -271,4 +269,14 @@ If you don't need cluster anymore, you can delete it with following commands.
 
     $ kops delete cluster --name example.cluster.k8s.local --yes    
 
-link:../Phase2/readme.adoc[Go Next Phase2]
+[cols="1,1",width="90%"]
+|=====
+<|image:go-back.png[alt="go Back",link=../Prelab,width=50] Back
+>|Next image:go-next.png[alt="go Next",link=../../Phase2,width=50]
+
+2+^|link:../Phase1/readme.adoc[Go Next Phase2]
+|=====
+
+Great job. You did all subject of Kubernetes basic and operation. Go Next advanced subject.
+
+link:../Phase3/readme.adoc[Phase3 - Advanced operation for Kubernetes]
