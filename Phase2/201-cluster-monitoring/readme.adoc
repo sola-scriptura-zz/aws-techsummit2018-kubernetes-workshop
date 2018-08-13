@@ -14,7 +14,7 @@ http://prometheus.io/[Prometheus] is an open-source systems monitoring and alert
 
 Heapster is limited to Kuberenetes container metrics, it is not general use. Heapster can be used as Prometheus scrape target.
 
-All configuration files for this chapter are in the link:templates[201-cluster-monitoring/templates, window="_blank"] directory.
+All configuration files for this chapter are in the link:templates[201-cluster-monitoring/templates] directory.
 
 == Kubernetes Dashboard
 
@@ -113,7 +113,7 @@ https://github.com/kubernetes/heapster[Heapster] is a metrics aggregator and pro
 
 Heapster collects and interprets various signals like compute resource usage, lifecycle events, etc., and exports cluster metrics via REST endpoints.
 
-Heapster, InfluxDB and Grafana are http://kubernetes.io/docs/admin/addons/[Kubernetes addons].
+Heapster, InfluxDB and Grafana are http://kubernetes.io/docs/admin/addons/[Kubernetes addons]. You can download the file relative this session instruction right here - link:https://raw.githubusercontent.com/cristov/aws-techsummit2018-kubernetes-workshop/master/Phase2/201-cluster-monitoring/templates/[template-files, window="blank"]
 
 === Installation
 
