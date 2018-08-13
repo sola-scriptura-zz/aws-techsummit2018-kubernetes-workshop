@@ -14,7 +14,7 @@ http://prometheus.io/[Prometheus] is an open-source systems monitoring and alert
 
 Heapster is limited to Kuberenetes container metrics, it is not general use. Heapster can be used as Prometheus scrape target.
 
-All configuration files for this chapter are in the link:templates[201-cluster-monitoring/templates,window="_blank"] directory.
+All configuration files for this chapter are in the link:templates[201-cluster-monitoring/templates, window="_blank"] directory.
 
 == Kubernetes Dashboard
 
