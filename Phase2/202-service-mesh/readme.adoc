@@ -248,7 +248,7 @@ You should now be able to run the `istioctl` CLI
 Install Istio using `kubectl`. This will install Istio into its own namespace, `istio-system`. Change to the
 directory where you downloaded Istio in the step above.
 
-    kubectl apply -f install/kubernetes/istio.yaml
+    kubectl apply -f install/kubernetes/istio-demo.yaml
 
 Check the Istio has been installed. Note that Istio is installed into its own namespace.
 
@@ -288,7 +288,7 @@ po/istio-pilot-1811250569-mmfdg     1/1       Running   0          1m
 We'll use a sample application developed by the Istio team to check out the Istio features. Since we are using
 the manual method of injecting the Envoy sidecar into the application, we need to use the `istioctl` as shown below.
 
-    kubectl apply -f <(istioctl kube-inject -f samples/bookinfo/kube/bookinfo.yaml)
+    kubectl apply -f <(istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml)
 
 This will deploy the BookInfo application, which consists of 4 microservices, each written using a different language,
 which collaborate to show book product information, book details and book reviews. Each microservice is deployed in its own pod, with the Envoy proxy injected into the pod; Envoy will now take over all network communications between
