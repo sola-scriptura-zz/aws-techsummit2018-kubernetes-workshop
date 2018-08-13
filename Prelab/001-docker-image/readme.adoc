@@ -19,7 +19,7 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 
 === Running Docker container from local repository
 
-  $ Docker run -d -p 8081:8081 arungupta/greeting (close the previous session open with 8081)
+  $ docker run -d -p 8081:8081 arungupta/greeting (close the previous session open with 8081)
   $ curl http://localhost:8081/resources/greeting
 
 === Push Docker Images to Registry
