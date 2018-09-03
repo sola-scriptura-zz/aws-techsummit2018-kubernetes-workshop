@@ -34,7 +34,7 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 # Install Heptio Authenticator
 go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
-sudo mv ./go/bin/aws-iam-authenticator /usr/local/bin/
+sudo mv ~/go/bin/aws-iam-authenticator /usr/local/bin/
 
 # Install kops
 curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
@@ -92,7 +92,10 @@ ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 aws ec2 create-key-pair --key-name ${AWS_STACK_NAME} --query 'KeyMaterial' --output text > $HOME/.ssh/k8s-workshop.pem
 chmod 0400 $HOME/.ssh/k8s-workshop.pem
 
-if [ ! -d "scripts" ]; then
+if [ ! -d "aws-techsummit2018-kubernetes-workshop" ]; then
   # Download scripts
-  svn export https://github.com/cristov/aws-techsummit2018-kubernetes-workshop.git/scripts
+  git clone https://github.com/cristov/aws-techsummit2018-kubernetes-workshop.git
+
+  # Read viriable for script
+  source ~/.bashrc
 fi

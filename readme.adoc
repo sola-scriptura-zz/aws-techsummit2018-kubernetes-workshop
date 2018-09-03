@@ -79,7 +79,7 @@ Once your Cloud9 is ready, download the build script and install in your IDE. Th
 
 To install the script, run this command in the "bash" terminal tab of the Cloud9 IDE:
 
-    curl -o https://raw.githubusercontent.com/cristov/aws-techsummit2018-kubernetes-workshop/master/scripts/lab-ide-setup.sh
+    wget https://raw.githubusercontent.com/cristov/aws-techsummit2018-kubernetes-workshop/master/scripts/lab-ide-setup.sh
     chmod +x lab-ide-setup.sh && \
     . ./lab-ide-setup.sh
 
