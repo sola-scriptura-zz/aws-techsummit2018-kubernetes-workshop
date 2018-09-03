@@ -1,4 +1,4 @@
-global:
+globalapiversion:v1:
   resolve_timeout: 5m
 route:
   group_by: ['job']
