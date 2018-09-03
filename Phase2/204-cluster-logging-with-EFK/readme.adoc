@@ -14,7 +14,7 @@ In terms of architecture, Fluentd is deployed as a DaemonSet with the CloudWatch
 
 == Prerequisites
 
-In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, use the link:../../01-path-basics/102-your-first-cluster#create-a-kubernetes-cluster-with-eks[AWS CLI] (recommended). If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
+In order to perform exercises in this chapter, you’ll need to deploy configurations to a Kubernetes cluster. To create an EKS-based Kubernetes cluster, like we already taken Phase1 link:../../Phase1/readme.adoc[ ] (recommended). If you wish to create a Kubernetes cluster without EKS, you can instead use link:../../01-path-basics/102-your-first-cluster#alternative-create-a-kubernetes-cluster-with-kops[kops].
 
 All configuration files for this chapter are in the `.204-cluster-logging-with-EFK` directory. Make sure you change to that directory before giving any commands in this chapter.
 

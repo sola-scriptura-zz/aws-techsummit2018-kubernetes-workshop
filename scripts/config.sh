@@ -1,49 +1,7 @@
-# Lab IDE setup from IDE-Build script
-#title           lab-ide-setup.sh
-#description     This script will setup the Cloud9 IDE with the prerequisite packages and code for the AWS Tech Summit 2018 K8s workshop.
-#author          @buzzsurfr
-#contributors    @buzzsurfr @dalbhanj @cloudymind
-#Modifier        @yjeong
-#date            2018-08-11
-#version         0.3
-#original script usage curl -sSL https://s3.amazonaws.com/lab-ide-theomazonian/lab-ide-build.sh | bash -s stable
-#==============================================================================
-
-# Install jq
-sudo yum -y install jq
-
-# Update awscli
-sudo -H pip install -U awscli
-
-# Install bash-completion
-sudo yum install bash-completion -y
-
-# Install kubectl
-cat <<EOF > ./kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOF
-sudo mv ./kubernetes.repo /etc/yum.repos.d
-sudo yum install -y kubectl
-echo "source <(kubectl completion bash)" >> ~/.bashrc
-
-# Install Heptio Authenticator
-go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
-sudo mv ./go/bin/aws-iam-authenticator /usr/local/bin/
-
-# Install kops
-curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
-chmod +x kops-linux-amd64
-sudo mv kops-linux-amd64 /usr/local/bin/kops
-
+#!/bin/bash 
 # Configure AWS CLI
-availability_zone=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
-export AWS_DEFAULT_REGION=${availability_zone%?}
+#availability_zone=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
+#export AWS_DEFAULT_REGION=${availability_zone%?}
 
 # Lab-specific configuration
 export AWS_AVAILABILITY_ZONES="$(aws ec2 describe-availability-zones --query 'AvailabilityZones[].ZoneName' --output text | awk -v OFS="," '$1=$1')"
@@ -77,22 +35,12 @@ echo "EKS_SERVICE_ROLE=$EKS_SERVICE_ROLE" >> ~/.bashrc
 
 # EKS-Optimized AMI
 if [ "$AWS_DEFAULT_REGION" == "us-east-1" ]; then
-#  export EKS_WORKER_AMI=ami-dea4d5a1
-    export EKS_WORKER_AMI=ami-0b2ae3c6bda8b5c06
+  export EKS_WORKER_AMI=ami-08cab282f9979fc7a
 elif [ "$AWS_DEFAULT_REGION" == "us-west-2" ]; then
-#  export EKS_WORKER_AMI=ami-73a6e20b
-    export EKS_WORKER_AMI=ami-08cab282f9979fc7a
+  export EKS_WORKER_AMI=ami-0b2ae3c6bda8b5c06
 fi
 echo "EKS_WORKER_AMI=$EKS_WORKER_AMI" >> ~/.bashrc
-
-# Create SSH key
-ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
 # Create EC2 Keypair
 aws ec2 create-key-pair --key-name ${AWS_STACK_NAME} --query 'KeyMaterial' --output text > $HOME/.ssh/k8s-workshop.pem
 chmod 0400 $HOME/.ssh/k8s-workshop.pem
-
-if [ ! -d "scripts" ]; then
-  # Download scripts
-  svn export https://github.com/cristov/aws-techsummit2018-kubernetes-workshop.git/scripts
-fi
