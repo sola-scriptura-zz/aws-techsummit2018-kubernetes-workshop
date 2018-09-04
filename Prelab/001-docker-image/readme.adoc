@@ -27,9 +27,11 @@ By default, the `latest` tag is used for the image. A different tag may be speci
 (Important) Attach AmazonEC2ContainerRegistryFullAccess Policy to k8s-workshop-LabIdeRole-xxx Role through AWS IAM console or using aws-cli. 
 
 Log in to ECR
+
   $ aws ecr get-login --no-include-email --region us-west-2 or us-east-1 (copy and paste the output of this commend)
 
-Create ECR repository to deploy docker into ECS. 
+Create ECR repository to deploy docker into ECS.
+
   $ aws ecr create-repository --repository-name greeting
   $ aws ecr create-repository --repository-name name
   $ aws ecr create-repository --repository-name webapp
